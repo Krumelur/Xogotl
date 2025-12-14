@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://cjyysirxqi8ii"]
+[gd_scene load_steps=3 format=3 uid="uid://cjyysirxqi8ii"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Script" uid="uid://h13cp1vhy2i5" path="res://xogotl.gd" id="1_f34km"]
+[ext_resource type="Texture2D" uid="uid://c02w16xthag7a" path="res://gfx/xogotl.png" id="2_we52l"]
+
+[node name="Xogotl" type="CharacterBody2D"]
+script = ExtResource("1_f34km")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_we52l")

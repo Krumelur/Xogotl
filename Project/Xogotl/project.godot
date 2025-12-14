@@ -28,5 +28,11 @@ renderer/rendering_method="mobile"
 
 [xogot]
 
-project/editorState=[]
+project/editorState=[{
+"column": 0,
+"current": true,
+"line": 0,
+"path": "res://xogotl.gd",
+"type": "file"
+}]
 project/breakpoints={}
