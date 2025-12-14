@@ -11,9 +11,22 @@ config_version=5
 [application]
 
 config/name="Xogotl"
+run/main_scene="res://GameMain.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=320
+window/size/viewport_height=600
+window/stretch/mode="viewport"
 
 [rendering]
 
 renderer/rendering_method="mobile"
+2d/snap/snap_2d_transforms_to_pixel=true
+
+[xogot]
+
+project/editorState=[]
+project/breakpoints={}

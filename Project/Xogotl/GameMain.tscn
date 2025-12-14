@@ -1,0 +1,219 @@
+[gd_scene load_steps=12 format=3 uid="uid://djuyho5k41npv"]
+
+[ext_resource type="Texture2D" uid="uid://1vf204jauw15" path="res://gfx/game_backround.png" id="1_5nxxm"]
+[ext_resource type="Texture2D" uid="uid://b382defop647e" path="res://gfx/water.png" id="2_18yfx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3is6"]
+atlas = ExtResource("2_18yfx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ifft"]
+atlas = ExtResource("2_18yfx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8mte"]
+atlas = ExtResource("2_18yfx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0t45t"]
+atlas = ExtResource("2_18yfx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_woaru"]
+atlas = ExtResource("2_18yfx")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm0h6"]
+atlas = ExtResource("2_18yfx")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xtyf"]
+atlas = ExtResource("2_18yfx")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cg58h"]
+atlas = ExtResource("2_18yfx")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i0otx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3is6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ifft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8mte")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0t45t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_woaru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm0h6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xtyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cg58h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="GameBackround" type="Sprite2D" parent="Background"]
+texture = ExtResource("1_5nxxm")
+centered = false
+
+[node name="WavesRoot" type="Node2D" parent="Background/GameBackround"]
+
+[node name="Wave1" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.259127
+centered = false
+
+[node name="Wave2" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
+position = Vector2(16, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave3" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
+position = Vector2(32, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave4" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
+position = Vector2(48, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave5" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
+position = Vector2(64, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave6" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
+position = Vector2(80, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave7" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
+position = Vector2(96, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave8" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
+position = Vector2(112, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave9" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
+position = Vector2(128, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave10" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
+position = Vector2(144, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="WavesRoot2" type="Node2D" parent="Background/GameBackround"]
+position = Vector2(160, 0)
+
+[node name="Wave1" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.259127
+centered = false
+
+[node name="Wave2" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
+position = Vector2(16, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave3" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
+position = Vector2(32, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave4" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
+position = Vector2(48, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave5" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
+position = Vector2(64, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave6" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
+position = Vector2(80, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave7" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
+position = Vector2(96, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave8" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
+position = Vector2(112, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave9" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
+position = Vector2(128, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave10" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
+position = Vector2(144, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
