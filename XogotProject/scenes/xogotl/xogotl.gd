@@ -16,14 +16,14 @@ var float_time : float
 var float_tween : Tween
 
 # Configures floating (idling) behavior.
-const FLOAT_AMPLITUDE := 4 
+const FLOAT_AMPLITUDE := 3 
 const FLOAT_SPEED := 1
 
 # Configures movement.
 const MAX_SPEED := 130.0          # speed cap
-const KICK_SPEED := 200.0         # initial push
+const KICK_SPEED := 160.0         # initial push
 const DRAG_PER_SEC := 3.0         # higher = stops sooner (water resistance)
-const STEER_ACCEL := 100.0        # how much it tries to face the target while gliding
+const STEER_ACCEL := 70.0        # how much it tries to face the target while gliding
 const STOP_RADIUS := 2.0
 
 func _ready() -> void:
@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	if current_state == STATE.FLOAT:
 		if not float_tween:
 			float_position = position
-			float_tween = create_tween()
+			float_tween = create_tween().set_trans(Tween.TRANS_SINE)
 			float_tween.set_loops(0)
 			float_tween.tween_property(self, "position:y", float_position.y - FLOAT_AMPLITUDE, FLOAT_SPEED)
 			float_tween.tween_property(self, "position:y", float_position.y + FLOAT_AMPLITUDE, FLOAT_SPEED)

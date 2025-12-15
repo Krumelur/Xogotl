@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://gmch15bfhgtj"]
+
+[ext_resource type="Texture2D" uid="uid://sq1xn4ab14d" path="res://gfx/worm.png" id="1_hvrp0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow8q5"]
+atlas = ExtResource("1_hvrp0")
+region = Rect2(0, 0, 7, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4y75"]
+atlas = ExtResource("1_hvrp0")
+region = Rect2(8, 0, 7, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s628v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow8q5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4y75")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Worm" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s628v")
+autoplay = "default"
+frame_progress = 0.80744874
