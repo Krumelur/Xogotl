@@ -1,43 +1,48 @@
-[gd_scene load_steps=12 format=3 uid="uid://djuyho5k41npv"]
+[gd_scene load_steps=14 format=3 uid="uid://djuyho5k41npv"]
 
+[ext_resource type="Script" uid="uid://b3o3sxixvlni6" path="res://game_main.gd" id="1_c3is6"]
+[ext_resource type="Texture2D" uid="uid://1vf204jauw15" path="res://gfx/game_backround.png" id="2_2ifft"]
 [ext_resource type="Texture2D" uid="uid://b382defop647e" path="res://gfx/water.png" id="2_18yfx"]
 [ext_resource type="PackedScene" uid="uid://cjyysirxqi8ii" path="res://Xogotl.tscn" id="3_c3is6"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c3is6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_18yfx"]
 atlas = ExtResource("2_18yfx")
 region = Rect2(0, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3is6"]
+atlas = ExtResource("2_18yfx")
+region = Rect2(17, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ifft"]
 atlas = ExtResource("2_18yfx")
-region = Rect2(16, 0, 16, 16)
+region = Rect2(34, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8mte"]
 atlas = ExtResource("2_18yfx")
-region = Rect2(32, 0, 16, 16)
+region = Rect2(51, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0t45t"]
 atlas = ExtResource("2_18yfx")
-region = Rect2(48, 0, 16, 16)
+region = Rect2(68, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_woaru"]
 atlas = ExtResource("2_18yfx")
-region = Rect2(64, 0, 16, 16)
+region = Rect2(85, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dm0h6"]
 atlas = ExtResource("2_18yfx")
-region = Rect2(80, 0, 16, 16)
+region = Rect2(102, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7xtyf"]
 atlas = ExtResource("2_18yfx")
-region = Rect2(96, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cg58h"]
-atlas = ExtResource("2_18yfx")
-region = Rect2(112, 0, 16, 16)
+region = Rect2(119, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i0otx"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18yfx")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c3is6")
 }, {
@@ -58,21 +63,27 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7xtyf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cg58h")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D"]
+[node name="GameMain" type="Node2D"]
+script = ExtResource("1_c3is6")
 
-[node name="Xogotl" parent="." instance=ExtResource("3_c3is6")]
-position = Vector2(143, 139)
+[node name="GameBackround" type="Sprite2D" parent="."]
+texture = ExtResource("2_2ifft")
+centered = false
+
+[node name="Walls" type="StaticBody2D" parent="GameBackround"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameBackround/Walls"]
+position = Vector2(1, 27)
+polygon = PackedVector2Array(0, 0, 9, 5, 11, 105, 12, 110, 14, 115, 14, 119, 16, 123, 19, 126, 25, 129, 27, 136, 31, 143, 36, 144, 42, 148, 53, 153, 60, 158, 73, 158, 87, 154, 95, 154, 107, 158, 115, 158, 124, 158, 132, 154, 139, 146, 149, 140, 156, 135, 161, 126, 165, 117, 169, 101, 169, 5, 172, 3, 179, 2, 179, 173, -1, 173)
 
 [node name="WavesRoot" type="Node2D" parent="."]
+position = Vector2(11, 32)
 
 [node name="Wave1" type="AnimatedSprite2D" parent="WavesRoot"]
 sprite_frames = SubResource("SpriteFrames_i0otx")
@@ -84,61 +95,64 @@ centered = false
 position = Vector2(16, 0)
 sprite_frames = SubResource("SpriteFrames_i0otx")
 autoplay = "default"
-frame_progress = 0.220483
+frame_progress = 0.687999
 centered = false
 
 [node name="Wave3" type="AnimatedSprite2D" parent="WavesRoot"]
 position = Vector2(32, 0)
 sprite_frames = SubResource("SpriteFrames_i0otx")
 autoplay = "default"
-frame_progress = 0.873571
+frame_progress = 0.687999
 centered = false
 
 [node name="Wave4" type="AnimatedSprite2D" parent="WavesRoot"]
 position = Vector2(48, 0)
 sprite_frames = SubResource("SpriteFrames_i0otx")
 autoplay = "default"
-frame_progress = 0.220483
+frame_progress = 0.687999
 centered = false
 
 [node name="Wave5" type="AnimatedSprite2D" parent="WavesRoot"]
 position = Vector2(64, 0)
 sprite_frames = SubResource("SpriteFrames_i0otx")
 autoplay = "default"
-frame_progress = 0.220483
+frame_progress = 0.687999
 centered = false
 
 [node name="Wave6" type="AnimatedSprite2D" parent="WavesRoot"]
 position = Vector2(80, 0)
 sprite_frames = SubResource("SpriteFrames_i0otx")
 autoplay = "default"
-frame_progress = 0.220483
+frame_progress = 0.687999
 centered = false
 
 [node name="Wave7" type="AnimatedSprite2D" parent="WavesRoot"]
 position = Vector2(96, 0)
 sprite_frames = SubResource("SpriteFrames_i0otx")
 autoplay = "default"
-frame_progress = 0.220483
+frame_progress = 0.687999
 centered = false
 
 [node name="Wave8" type="AnimatedSprite2D" parent="WavesRoot"]
 position = Vector2(112, 0)
 sprite_frames = SubResource("SpriteFrames_i0otx")
 autoplay = "default"
-frame_progress = 0.220483
+frame_progress = 0.687999
 centered = false
 
 [node name="Wave9" type="AnimatedSprite2D" parent="WavesRoot"]
 position = Vector2(128, 0)
 sprite_frames = SubResource("SpriteFrames_i0otx")
 autoplay = "default"
-frame_progress = 0.220483
+frame_progress = 0.687999
 centered = false
 
 [node name="Wave10" type="AnimatedSprite2D" parent="WavesRoot"]
 position = Vector2(144, 0)
 sprite_frames = SubResource("SpriteFrames_i0otx")
 autoplay = "default"
-frame_progress = 0.220483
+frame_progress = 0.687999
 centered = false
+
+[node name="Xogotl" parent="." instance=ExtResource("3_c3is6")]
+position = Vector2(84, 143)

@@ -1,11 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjyysirxqi8ii"]
+[gd_scene load_steps=4 format=3 uid="uid://cjyysirxqi8ii"]
 
 [ext_resource type="Script" uid="uid://h13cp1vhy2i5" path="res://xogotl.gd" id="1_f34km"]
 [ext_resource type="Texture2D" uid="uid://c02w16xthag7a" path="res://gfx/xogotl.png" id="2_we52l"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f34km"]
+radius = 4.9999924
+height = 23.999964
+
 [node name="Xogotl" type="CharacterBody2D"]
+disable_mode = 2
+motion_mode = 1
+slide_on_ceiling = false
 script = ExtResource("1_f34km")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
 texture = ExtResource("2_we52l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.9999995)
+rotation = 1.5725186
+shape = SubResource("CapsuleShape2D_f34km")

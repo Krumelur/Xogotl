@@ -9,14 +9,15 @@ enum STATE {
 
 var local_target_pos: Vector2
 var num_limbs := 4
-var vel := Vector2.ZERO
 var current_state : STATE = STATE.FLOAT
 var float_position : Vector2
 var float_time : float
 
+var float_tween : Tween
+
 # Configures floating (idling) behavior.
 const FLOAT_AMPLITUDE := 4 
-const FLOAT_FREQUENCY := 0.3
+const FLOAT_SPEED := 1
 
 # Configures movement.
 const MAX_SPEED := 130.0          # speed cap
@@ -32,9 +33,18 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if current_state == STATE.FLOAT:
-		float_time += delta
-		position = Vector2(float_position.x, float_position.y + sin(float_time * TAU * FLOAT_FREQUENCY) * FLOAT_AMPLITUDE)
+		if not float_tween:
+			float_position = position
+			float_tween = create_tween()
+			float_tween.set_loops(0)
+			float_tween.tween_property(self, "position:y", float_position.y - FLOAT_AMPLITUDE, FLOAT_SPEED)
+			float_tween.tween_property(self, "position:y", float_position.y + FLOAT_AMPLITUDE, FLOAT_SPEED)
+			float_tween.play()
 	else:
+		if float_tween:
+			float_tween.stop()
+			float_tween = null
+		
 		var limb_factor := 1.0 / float(5 - num_limbs) # 4 limbs => 1.0, fewer => slower
 		var max_speed := MAX_SPEED * limb_factor
 	
@@ -44,29 +54,29 @@ func _physics_process(delta: float) -> void:
 		# Steering: gently accelerates toward target while still preserving inertia
 		if dist > STOP_RADIUS:
 			var dir := to_target / dist
-			vel += dir * (STEER_ACCEL * limb_factor) * delta
+			velocity += dir * (STEER_ACCEL * limb_factor) * delta
 		else:
 			# Near target: bleed velocity so it settles instead of orbiting
-			vel = vel.move_toward(Vector2.ZERO, (STEER_ACCEL * 2.0) * delta)
+			velocity = velocity.move_toward(Vector2.ZERO, (STEER_ACCEL * 2.0) * delta)
 			
 		# Water drag: exponential-ish decay, stable across FPS
 		var drag := exp(-DRAG_PER_SEC * delta)
-		vel *= drag
+		velocity *= drag
 		
 		# Cap speed
-		if vel.length() > max_speed:
-			vel = vel.normalized() * max_speed
-	
-		position += vel * delta
+		if velocity.length() > max_speed:
+			velocity = velocity.normalized() * max_speed
 		
-		if vel.length() <= 0.02:
+		if velocity.length() <= 0.02:
 			current_state = STATE.FLOAT
-			float_position = position
-			float_time = 0
+			
+		if move_and_slide():
+			GodotLogger.info("Collided")
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed:
+	var touch : InputEventScreenTouch = event as InputEventScreenTouch
+	if touch:
 		var global_mouse_pos := get_global_mouse_position()
 		local_target_pos = get_parent().to_local(global_mouse_pos)
 		local_target_pos.x = clamp(local_target_pos.x, 8.0, 152.0)
@@ -76,8 +86,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		var limb_factor := 1.0 / float(5 - num_limbs)
 
 		# One strong kick, adds onto current movement (feels like momentum)
-		vel += dir * (KICK_SPEED * limb_factor)
+		velocity += dir * (KICK_SPEED * limb_factor)
 		
 		current_state = STATE.MOVE
 
 	
+
+
+func _on_area_entered(area: Area2D) -> void:
+	GodotLogger.info("Hit wall")
+	current_state = STATE.FLOAT
