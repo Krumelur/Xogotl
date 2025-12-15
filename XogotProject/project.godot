@@ -15,23 +15,34 @@ run/main_scene="res://GameMain.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GodotLogger="*res://addons/logger/logger.gd"
+
 [display]
 
-window/size/viewport_width=320
-window/size/viewport_height=600
+window/size/viewport_width=160
+window/size/viewport_height=200
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/logger/plugin.cfg")
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+textures/webp_compression/lossless_compression_factor=0.0
+textures/default_filters/texture_mipmap_bias=-0.627
 2d/snap/snap_2d_transforms_to_pixel=true
 
 [xogot]
 
 project/editorState=[{
-"column": 0,
+"column": 23,
 "current": true,
-"line": 0,
+"line": 11,
 "path": "res://xogotl.gd",
 "type": "file"
 }]

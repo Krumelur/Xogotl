@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://djuyho5k41npv"]
+[gd_scene load_steps=13 format=3 uid="uid://djuyho5k41npv"]
 
 [ext_resource type="Texture2D" uid="uid://1vf204jauw15" path="res://gfx/game_backround.png" id="1_5nxxm"]
 [ext_resource type="Texture2D" uid="uid://b382defop647e" path="res://gfx/water.png" id="2_18yfx"]
+[ext_resource type="PackedScene" uid="uid://cjyysirxqi8ii" path="res://Xogotl.tscn" id="3_c3is6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c3is6"]
 atlas = ExtResource("2_18yfx")
@@ -217,3 +218,6 @@ sprite_frames = SubResource("SpriteFrames_i0otx")
 autoplay = "default"
 frame_progress = 0.220483
 centered = false
+
+[node name="Xogotl" parent="." instance=ExtResource("3_c3is6")]
+position = Vector2(143, 139)
