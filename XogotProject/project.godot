@@ -40,10 +40,12 @@ textures/default_filters/texture_mipmap_bias=-0.627
 [xogot]
 
 project/editorState=[{
-"column": 23,
+"column": 45,
 "current": true,
-"line": 11,
+"line": 71,
 "path": "res://xogotl.gd",
 "type": "file"
 }]
-project/breakpoints={}
+project/breakpoints={
+"res://xogotl.gd": PackedInt32Array(62)
+}
