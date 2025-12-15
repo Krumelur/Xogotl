@@ -1,6 +1,5 @@
-[gd_scene load_steps=13 format=3 uid="uid://djuyho5k41npv"]
+[gd_scene load_steps=12 format=3 uid="uid://djuyho5k41npv"]
 
-[ext_resource type="Texture2D" uid="uid://1vf204jauw15" path="res://gfx/game_backround.png" id="1_5nxxm"]
 [ext_resource type="Texture2D" uid="uid://b382defop647e" path="res://gfx/water.png" id="2_18yfx"]
 [ext_resource type="PackedScene" uid="uid://cjyysirxqi8ii" path="res://Xogotl.tscn" id="3_c3is6"]
 
@@ -70,154 +69,76 @@ animations = [{
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Background" type="Node2D" parent="."]
-
-[node name="GameBackround" type="Sprite2D" parent="Background"]
-texture = ExtResource("1_5nxxm")
-centered = false
-
-[node name="WavesRoot" type="Node2D" parent="Background/GameBackround"]
-
-[node name="Wave1" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.259127
-centered = false
-
-[node name="Wave2" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
-position = Vector2(16, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave3" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
-position = Vector2(32, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave4" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
-position = Vector2(48, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave5" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
-position = Vector2(64, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave6" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
-position = Vector2(80, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave7" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
-position = Vector2(96, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave8" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
-position = Vector2(112, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave9" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
-position = Vector2(128, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave10" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot"]
-position = Vector2(144, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="WavesRoot2" type="Node2D" parent="Background/GameBackround"]
-position = Vector2(160, 0)
-
-[node name="Wave1" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.259127
-centered = false
-
-[node name="Wave2" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
-position = Vector2(16, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave3" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
-position = Vector2(32, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave4" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
-position = Vector2(48, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave5" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
-position = Vector2(64, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave6" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
-position = Vector2(80, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave7" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
-position = Vector2(96, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave8" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
-position = Vector2(112, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave9" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
-position = Vector2(128, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
-[node name="Wave10" type="AnimatedSprite2D" parent="Background/GameBackround/WavesRoot2"]
-position = Vector2(144, 0)
-sprite_frames = SubResource("SpriteFrames_i0otx")
-autoplay = "default"
-frame_progress = 0.220483
-centered = false
-
 [node name="Xogotl" parent="." instance=ExtResource("3_c3is6")]
 position = Vector2(143, 139)
+
+[node name="WavesRoot" type="Node2D" parent="."]
+
+[node name="Wave1" type="AnimatedSprite2D" parent="WavesRoot"]
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.687999
+centered = false
+
+[node name="Wave2" type="AnimatedSprite2D" parent="WavesRoot"]
+position = Vector2(16, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave3" type="AnimatedSprite2D" parent="WavesRoot"]
+position = Vector2(32, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.873571
+centered = false
+
+[node name="Wave4" type="AnimatedSprite2D" parent="WavesRoot"]
+position = Vector2(48, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave5" type="AnimatedSprite2D" parent="WavesRoot"]
+position = Vector2(64, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave6" type="AnimatedSprite2D" parent="WavesRoot"]
+position = Vector2(80, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave7" type="AnimatedSprite2D" parent="WavesRoot"]
+position = Vector2(96, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave8" type="AnimatedSprite2D" parent="WavesRoot"]
+position = Vector2(112, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave9" type="AnimatedSprite2D" parent="WavesRoot"]
+position = Vector2(128, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
+
+[node name="Wave10" type="AnimatedSprite2D" parent="WavesRoot"]
+position = Vector2(144, 0)
+sprite_frames = SubResource("SpriteFrames_i0otx")
+autoplay = "default"
+frame_progress = 0.220483
+centered = false
