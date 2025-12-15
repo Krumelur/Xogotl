@@ -77,8 +77,7 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	var touch : InputEventScreenTouch = event as InputEventScreenTouch
 	if touch:
-		var global_mouse_pos := get_global_mouse_position()
-		local_target_pos = get_parent().to_local(global_mouse_pos)
+		local_target_pos = touch.position
 		local_target_pos.x = clamp(local_target_pos.x, 8.0, 152.0)
 		local_target_pos.y = clamp(local_target_pos.y, 120.0, 192.0)
 
@@ -89,10 +88,3 @@ func _unhandled_input(event: InputEvent) -> void:
 		velocity += dir * (KICK_SPEED * limb_factor)
 		
 		current_state = STATE.MOVE
-
-	
-
-
-func _on_area_entered(area: Area2D) -> void:
-	GodotLogger.info("Hit wall")
-	current_state = STATE.FLOAT

@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://c02w16xthag7a" path="res://gfx/xogotl.png" id="2_we52l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f34km"]
-radius = 4.9999924
-height = 19.99997
+radius = 4.99999
+height = 20.0
 
 [node name="Xogotl" type="CharacterBody2D"]
 disable_mode = 2
@@ -18,6 +18,6 @@ position = Vector2(0, -8)
 texture = ExtResource("2_we52l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -4.9999995)
-rotation = 1.5725186
+position = Vector2(-1, -5)
+rotation = 1.57252
 shape = SubResource("CapsuleShape2D_f34km")

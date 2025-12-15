@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Xogotl"
 run/main_scene="res://scenes/main/GameMain.tscn"
-config/features=PackedStringArray("4.5", "Mobile")
+config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -40,17 +40,17 @@ textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/webp_compression/lossless_compression_factor=0.0
 textures/default_filters/texture_mipmap_bias=-0.627
-environment/defaults/default_clear_color=Color(0.25490198, 0.57254905, 0.7647059, 1)
+environment/defaults/default_clear_color=Color(0.254902, 0.572549, 0.764706, 1)
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
 
 [xogot]
 
 project/editorState=[{
-"column": 0,
+"column": 35,
 "current": true,
-"line": 62,
-"path": "res://xogotl.gd",
+"line": 79,
+"path": "res://scenes/xogotl/xogotl.gd",
 "type": "file"
 }]
 project/breakpoints={
