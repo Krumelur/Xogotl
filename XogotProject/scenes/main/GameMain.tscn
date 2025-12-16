@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://djuyho5k41npv"]
+[gd_scene load_steps=18 format=3 uid="uid://djuyho5k41npv"]
 
 [ext_resource type="Script" uid="uid://b3o3sxixvlni6" path="res://scenes/main/game_main.gd" id="1_womm6"]
 [ext_resource type="Texture2D" uid="uid://1vf204jauw15" path="res://gfx/game_backround.png" id="2_iur3i"]
+[ext_resource type="Texture2D" uid="uid://8dgab8wdp1e5" path="res://gfx/steamboat.png" id="3_1ytdt"]
 [ext_resource type="Texture2D" uid="uid://b382defop647e" path="res://gfx/water.png" id="3_sjx8o"]
 [ext_resource type="PackedScene" uid="uid://gmch15bfhgtj" path="res://scenes/pond_inhabitants/Worm.tscn" id="4_er30b"]
 [ext_resource type="PackedScene" uid="uid://cjyysirxqi8ii" path="res://scenes/xogotl/Xogotl.tscn" id="5_8hvka"]
@@ -84,6 +85,10 @@ centered = false
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameBackround/Walls"]
 position = Vector2(1, 27)
 polygon = PackedVector2Array(0, 0, 9, 5, 11, 105, 12, 110, 14, 115, 14, 119, 16, 123, 19, 126, 22, 132, 27, 136, 31, 143, 36, 144, 42, 148, 53, 153, 60, 158, 74, 158, 87, 159, 99, 157, 110, 159, 116, 159, 120, 162, 129, 159, 142, 149, 150, 141, 158, 138, 163, 129, 165, 117, 169, 101, 169, 5, 172, 3, 179, 2, 179, 173, -1, 173)
+
+[node name="Steamboat" type="Sprite2D" parent="."]
+position = Vector2(47, 40)
+texture = ExtResource("3_1ytdt")
 
 [node name="WavesRoot" type="Node2D" parent="."]
 position = Vector2(11, 32)

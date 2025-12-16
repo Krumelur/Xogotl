@@ -47,7 +47,7 @@ environment/defaults/default_clear_color=Color(0.254902, 0.572549, 0.764706, 1)
 [xogot]
 
 project/editorState=[{
-"column": 35,
+"column": 0,
 "current": true,
 "line": 79,
 "path": "res://scenes/xogotl/xogotl.gd",
