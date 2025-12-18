@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://xn2llk04iqgu"]
+
+[ext_resource type="Script" uid="uid://d15sttxgr44i8" path="res://scenes/pond_inhabitants/fish_bone.gd" id="1_vcx02"]
+[ext_resource type="Texture2D" uid="uid://7qwrnfgjyljw" path="res://gfx/fish.png" id="2_s1unr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djwo6"]
+atlas = ExtResource("2_s1unr")
+region = Rect2(0, 0, 13, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8plvl"]
+atlas = ExtResource("2_s1unr")
+region = Rect2(14, 0, 13, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s628v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djwo6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8plvl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="FishBone" type="Node2D"]
+position = Vector2(6, 3)
+script = ExtResource("1_vcx02")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s628v")
+autoplay = "default"
+frame_progress = 0.11941

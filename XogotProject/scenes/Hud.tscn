@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdvpk21cn1b7o"]
+
+[ext_resource type="Script" uid="uid://coc05rg2j41n2" path="res://scenes/hud.gd" id="1_wfueu"]
+
+[node name="HudRoot" type="Node2D"]
+script = ExtResource("1_wfueu")
+
+[node name="Food" type="Label" parent="."]
+offset_right = 17.0
+offset_bottom = 57.0
+text = "100%"

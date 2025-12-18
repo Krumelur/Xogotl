@@ -13,6 +13,7 @@ config_version=5
 config/name="Xogotl"
 run/main_scene="res://scenes/main/GameMain.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
+boot_splash/bg_color=Color(0.368622, 0.188232, 0.921555, 1)
 config/icon="res://icon.svg"
 
 [autoload]
@@ -40,7 +41,7 @@ textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/webp_compression/lossless_compression_factor=0.0
 textures/default_filters/texture_mipmap_bias=-0.627
-environment/defaults/default_clear_color=Color(0.254902, 0.572549, 0.764706, 1)
+environment/defaults/default_clear_color=Color(0, 0.33725, 0.839203, 1)
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
 
@@ -48,9 +49,14 @@ environment/defaults/default_clear_color=Color(0.254902, 0.572549, 0.764706, 1)
 
 project/editorState=[{
 "column": 0,
+"line": 9,
+"path": "res://scenes/pond_inhabitants/fish.gd",
+"type": "file"
+}, {
+"column": 33,
 "current": true,
-"line": 79,
-"path": "res://scenes/xogotl/xogotl.gd",
+"line": 12,
+"path": "res://scenes/pond_inhabitants/fish_bone.gd",
 "type": "file"
 }]
 project/breakpoints={

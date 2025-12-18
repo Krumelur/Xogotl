@@ -3,8 +3,9 @@ class_name GameMain
 extends Node2D
 
 @onready var waves_root : Node2D = $WavesRoot
+@onready var hud : Hud = $CanvasLayerHud/HudRoot
 
-const WAVES_AMPLITUDE : int = 3
+const WAVES_AMPLITUDE : int = 1
 const WAVES_SPEED : float = 3
 
 func _ready() -> void:

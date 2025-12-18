@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://08cjnk4jkdms"]
+
+[ext_resource type="Texture2D" uid="uid://sq1xn4ab14d" path="res://gfx/worm.png" id="1_0yqwl"]
+
+[sub_resource type="GDScript" id="GDScript_0yqwl"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow8q5"]
+atlas = ExtResource("1_0yqwl")
+region = Rect2(0, 0, 7, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4y75"]
+atlas = ExtResource("1_0yqwl")
+region = Rect2(8, 0, 7, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s628v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow8q5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4y75")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="BasePondInhabitant" type="Node2D"]
+script = SubResource("GDScript_0yqwl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s628v")
+autoplay = "default"
+frame_progress = 0.807449
