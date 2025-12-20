@@ -7,4 +7,5 @@
 script = ExtResource("1_8nm8v")
 
 [node name="Bubble" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.36862746)
 texture = ExtResource("2_2ui8b")

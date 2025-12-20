@@ -35,21 +35,11 @@ func _ready() -> void:
 	
 	# Get bubbles.
 	bubbles.assign(get_tree().get_nodes_in_group("group_bubbles"))
-	show_bubbles(false)
-	
-	
-func show_bubbles(show : bool) -> void:
-	for bubble in bubbles:
-		if show:
-			bubble.initialize()
-		else:
-			bubble.reset()
 	
 
 func _physics_process(delta: float) -> void:
 	if current_state == STATE.FLOAT:
 		if not float_tween:
-			show_bubbles(true)
 			float_tween = create_tween().set_trans(Tween.TRANS_SINE)
 			float_tween.set_loops(0)
 			float_tween.tween_property(self, "position:y", FLOAT_AMPLITUDE, FLOAT_SPEED).as_relative()
