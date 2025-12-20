@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Xogotl"
-run/main_scene="res://scenes/main/GameMain.tscn"
+run/main_scene="res://scenes/main/game_main.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0.368622, 0.188232, 0.921555, 1)
 config/icon="res://icon.svg"
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GodotLogger="*res://addons/logger/logger.gd"
+global="*res://scenes/main/global.gd"
 
 [display]
 
@@ -48,15 +49,50 @@ environment/defaults/default_clear_color=Color(0, 0.33725, 0.839203, 1)
 [xogot]
 
 project/editorState=[{
-"column": 0,
-"line": 9,
-"path": "res://scenes/pond_inhabitants/fish.gd",
+"column": 33,
+"line": 10,
+"path": "res://scenes/pond_inhabitants/fish_bone.gd",
 "type": "file"
 }, {
-"column": 33,
+"column": 28,
 "current": true,
+"line": 8,
+"path": "res://scenes/xogotl/xogotl.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 0,
+"path": "res://scenes/pond_inhabitant_collider.gd",
+"type": "file"
+}, {
+"column": 31,
 "line": 12,
-"path": "res://scenes/pond_inhabitants/fish_bone.gd",
+"path": "res://scenes/pond_inhabitants/pond_inhabitant.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 0,
+"path": "res://scenes/pond_inhabitants/pond_inhabitant_collider.gd",
+"type": "file"
+}, {
+"column": 54,
+"line": 9,
+"path": "res://scenes/pond_inhabitants/base/pond_inhabitant_collider.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 0,
+"path": "res://scenes/cloud.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 0,
+"path": "res://scenes/hud.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 2,
+"path": "res://scenes/main/global.gd",
 "type": "file"
 }]
 project/breakpoints={

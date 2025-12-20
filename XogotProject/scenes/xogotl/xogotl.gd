@@ -6,6 +6,7 @@ enum STATE {
 	MOVE
 }
 
+signal has_eaten_inhabitant(inhabitant : PondInhabitant)
 
 var local_target_pos: Vector2
 var num_limbs := 4
@@ -88,3 +89,18 @@ func _unhandled_input(event: InputEvent) -> void:
 		velocity += dir * (KICK_SPEED * limb_factor)
 		
 		current_state = STATE.MOVE
+
+
+func _mouth_area_entered(area: Area2D) -> void:
+	# Called if AreaMouth collides with another area.
+	# Check if we're esting a pond inhabitant and react.
+	var inhabitant_collider : PondInhabitantCollider = area as PondInhabitantCollider
+	if inhabitant_collider:
+		var inhabitant : PondInhabitant = inhabitant_collider.get_inhabitant()
+		if inhabitant:
+			has_eaten_inhabitant.emit(inhabitant)
+			var inhabitant_type : PondInhabitant.INHABITANT_TYPE = inhabitant.get_inhabitant_type()
+			GodotLogger.info("Xogotl eating", inhabitant_type)
+	
+	
+	

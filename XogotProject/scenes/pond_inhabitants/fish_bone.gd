@@ -1,13 +1,25 @@
 class_name FishBone
-extends Node2D
+extends PondInhabitant
 
 const drop_speed : float = 10
+const wobble_strength : float = 4
+const wobble_duration : float = 1.5
 
-# Called when the node enters the scene tree for the first time.
+var wobble_tween : Tween
+
+func get_inhabitant_type() -> INHABITANT_TYPE:
+	return INHABITANT_TYPE.FISH_BONE
+
 func _ready() -> void:
-	pass # Replace with function body.
+	wobble_tween = create_tween()
+	wobble_tween.tween_property(self, "position:x", wobble_strength, wobble_duration).as_relative()
+	wobble_tween.tween_property(self, "position:x", -wobble_strength, wobble_duration).as_relative()
+	wobble_tween.set_loops(0)
+	wobble_tween.play()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	position.y += delta * drop_speed
+
+func _process(delta: float) -> void:
+	if global_position.y > 200:
+		remove_from_pond()

@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://rpymqmbdyiqq"]
-
-[ext_resource type="PackedScene" uid="uid://08cjnk4jkdms" path="res://scenes/pond_inhabitants/base_pond_inhabitant.tscn" id="1_areim"]
-
-[node name="BasePondInhabitant" instance=ExtResource("1_areim")]

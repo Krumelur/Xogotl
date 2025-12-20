@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjyysirxqi8ii"]
+[gd_scene load_steps=5 format=3 uid="uid://cjyysirxqi8ii"]
 
 [ext_resource type="Script" uid="uid://h13cp1vhy2i5" path="res://scenes/xogotl/xogotl.gd" id="1_f34km"]
 [ext_resource type="Texture2D" uid="uid://c02w16xthag7a" path="res://gfx/xogotl.png" id="2_we52l"]
@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f34km"]
 radius = 4.99999
 height = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a1t1e"]
+radius = 2.00166
 
 [node name="Xogotl" type="CharacterBody2D"]
 disable_mode = 2
@@ -17,7 +20,15 @@ script = ExtResource("1_f34km")
 position = Vector2(0, -8)
 texture = ExtResource("2_we52l")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PhysicsBodyCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5)
 rotation = 1.57252
 shape = SubResource("CapsuleShape2D_f34km")
+
+[node name="AreaMouth" type="Area2D" parent="."]
+
+[node name="ColliderMouth" type="CollisionShape2D" parent="AreaMouth"]
+position = Vector2(5, -7)
+shape = SubResource("CircleShape2D_a1t1e")
+
+[connection signal="area_entered" from="AreaMouth" to="." method="_mouth_area_entered"]
