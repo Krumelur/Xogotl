@@ -102,5 +102,4 @@ func _mouth_area_entered(area: Area2D) -> void:
 			var inhabitant_type : PondInhabitant.INHABITANT_TYPE = inhabitant.get_inhabitant_type()
 			GodotLogger.info("Xogotl eating", inhabitant_type)
 	
-	
-	
+

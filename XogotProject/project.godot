@@ -42,57 +42,37 @@ textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/webp_compression/lossless_compression_factor=0.0
 textures/default_filters/texture_mipmap_bias=-0.627
-environment/defaults/default_clear_color=Color(0, 0.33725, 0.839203, 1)
+environment/defaults/default_clear_color=Color(0.199997, 0.199997, 0.199997, 1)
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
 
 [xogot]
 
 project/editorState=[{
-"column": 33,
+"column": 0,
 "line": 10,
 "path": "res://scenes/pond_inhabitants/fish_bone.gd",
 "type": "file"
 }, {
-"column": 28,
+"column": 0,
 "current": true,
-"line": 8,
+"line": 0,
 "path": "res://scenes/xogotl/xogotl.gd",
 "type": "file"
 }, {
 "column": 0,
-"line": 0,
-"path": "res://scenes/pond_inhabitant_collider.gd",
-"type": "file"
-}, {
-"column": 31,
-"line": 12,
-"path": "res://scenes/pond_inhabitants/pond_inhabitant.gd",
-"type": "file"
-}, {
-"column": 0,
-"line": 0,
-"path": "res://scenes/pond_inhabitants/pond_inhabitant_collider.gd",
-"type": "file"
-}, {
-"column": 54,
 "line": 9,
 "path": "res://scenes/pond_inhabitants/base/pond_inhabitant_collider.gd",
 "type": "file"
 }, {
 "column": 0,
-"line": 0,
-"path": "res://scenes/cloud.gd",
-"type": "file"
-}, {
-"column": 0,
-"line": 0,
-"path": "res://scenes/hud.gd",
-"type": "file"
-}, {
-"column": 0,
 "line": 2,
 "path": "res://scenes/main/global.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 25,
+"path": "res://scenes/main/game_main.gd",
 "type": "file"
 }]
 project/breakpoints={
