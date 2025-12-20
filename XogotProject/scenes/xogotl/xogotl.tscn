@@ -10,26 +10,27 @@ height = 20.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_a1t1e"]
 radius = 2.00166
 
-[node name="Xogotl" type="CharacterBody2D"]
+[node name="CharacterBody" type="CharacterBody2D"]
 disable_mode = 2
 motion_mode = 1
 slide_on_ceiling = false
 wall_min_slide_angle = 0.262093
 script = ExtResource("1_f34km")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -8)
-texture = ExtResource("2_we52l")
-
 [node name="PhysicsBodyCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5)
 rotation = 1.57252
 shape = SubResource("CapsuleShape2D_f34km")
 
-[node name="AreaMouth" type="Area2D" parent="."]
+[node name="XogotlSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_we52l")
 
-[node name="ColliderMouth" type="CollisionShape2D" parent="AreaMouth"]
+[node name="AreaMouth" type="Area2D" parent="XogotlSprite"]
+position = Vector2(0, 8)
+
+[node name="ColliderMouth" type="CollisionShape2D" parent="XogotlSprite/AreaMouth"]
 position = Vector2(5, -7)
 shape = SubResource("CircleShape2D_a1t1e")
 
-[connection signal="area_entered" from="AreaMouth" to="." method="_mouth_area_entered"]
+[connection signal="area_entered" from="XogotlSprite/AreaMouth" to="." method="_mouth_area_entered"]

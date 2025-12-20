@@ -11,14 +11,16 @@ signal has_eaten_inhabitant(inhabitant : PondInhabitant)
 var local_target_pos: Vector2
 var num_limbs := 4
 var current_state : STATE = STATE.FLOAT
-var float_position : Vector2
 var float_time : float
+
+var bubbles : Array[Bubble] = []
 
 var float_tween : Tween
 
 # Configures floating (idling) behavior.
 const FLOAT_AMPLITUDE := 3 
 const FLOAT_SPEED := 1
+
 
 # Configures movement.
 const MAX_SPEED := 130.0          # speed cap
@@ -30,16 +32,28 @@ const STOP_RADIUS := 2.0
 func _ready() -> void:
 	current_state = STATE.FLOAT
 	local_target_pos = position
-	float_position = position
+	
+	# Get bubbles.
+	bubbles.assign(get_tree().get_nodes_in_group("group_bubbles"))
+	show_bubbles(false)
+	
+	
+func show_bubbles(show : bool) -> void:
+	for bubble in bubbles:
+		if show:
+			bubble.initialize()
+		else:
+			bubble.reset()
+	
 
 func _physics_process(delta: float) -> void:
 	if current_state == STATE.FLOAT:
 		if not float_tween:
-			float_position = position
+			show_bubbles(true)
 			float_tween = create_tween().set_trans(Tween.TRANS_SINE)
 			float_tween.set_loops(0)
-			float_tween.tween_property(self, "position:y", float_position.y - FLOAT_AMPLITUDE, FLOAT_SPEED)
-			float_tween.tween_property(self, "position:y", float_position.y + FLOAT_AMPLITUDE, FLOAT_SPEED)
+			float_tween.tween_property(self, "position:y", FLOAT_AMPLITUDE, FLOAT_SPEED).as_relative()
+			float_tween.tween_property(self, "position:y", -FLOAT_AMPLITUDE, FLOAT_SPEED).as_relative()
 			float_tween.play()
 	else:
 		if float_tween:
@@ -79,8 +93,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	var touch : InputEventScreenTouch = event as InputEventScreenTouch
 	if touch:
 		local_target_pos = touch.position
-		local_target_pos.x = clamp(local_target_pos.x, 8.0, 152.0)
-		local_target_pos.y = clamp(local_target_pos.y, 120.0, 192.0)
+		#local_target_pos.x = clamp(local_target_pos.x, 8.0, 152.0)
+		#local_target_pos.y = clamp(local_target_pos.y, 120.0, 192.0)
 
 		var dir := (local_target_pos - position).normalized()
 		var limb_factor := 1.0 / float(5 - num_limbs)
@@ -102,4 +116,3 @@ func _mouth_area_entered(area: Area2D) -> void:
 			var inhabitant_type : PondInhabitant.INHABITANT_TYPE = inhabitant.get_inhabitant_type()
 			GodotLogger.info("Xogotl eating", inhabitant_type)
 	
-

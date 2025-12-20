@@ -1,2 +1,1 @@
-extends Object
-
+extends Node
