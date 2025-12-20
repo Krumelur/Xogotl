@@ -7,6 +7,8 @@ extends Node2D
 @onready var xogotl : Xogotl = $Playfield/Xogotl
 @onready var bubbles_root : Node2D = $Playfield/BubblesRoot
 @onready var marker_bubbly_min_y : Marker2D = $Playfield/BubblesMinY
+@onready var playfield : Node2D = $Playfield
+@onready var boat : Boat = $Playfield/Boat
 
 var energy : int = 100 : 
 	set(value):
@@ -25,25 +27,58 @@ const WAVES_SPEED : float = 3
 
 var bubble_scene : PackedScene
 const MAX_BUBBLES : int = 3
+const BUBBLES_RANDOM_THRESHOLD : float = 0.995
+
+const PROBALITY_TIMERANGE_SECONDS : float = 5.0
+var probability_timer : float = PROBALITY_TIMERANGE_SECONDS
+
+# Get a random value between 0..1 every PROBALITY_TIMERANGE_SECONDS.
+# If that value is grater than FISHBONE_PROBABILITY, drop a fishbone into the water.
+const FISHBONE_PROBABILITY : float = 0.6
+
+var fishbone_scene : PackedScene
+
+
 
 func _ready() -> void:
+	# A tween to make waves animate up and down.
 	var waves_tween = create_tween()
 	waves_tween.set_loops(0)
-	var waves_start_y := waves_root.position.y
-	waves_tween.tween_property(waves_root, "position:y", waves_start_y - WAVES_AMPLITUDE, WAVES_SPEED)
-	waves_tween.tween_property(waves_root, "position:y", waves_start_y + WAVES_AMPLITUDE, WAVES_SPEED)
+	waves_tween.tween_property(waves_root, "position:y", -WAVES_AMPLITUDE, WAVES_SPEED).as_relative()
+	waves_tween.tween_property(waves_root, "position:y", +WAVES_AMPLITUDE, WAVES_SPEED).as_relative()
 	waves_tween.play()
-	
+
+	# Preload dynamic scenes.
 	bubble_scene = preload("res://scenes/xogotl/bubble.tscn")
+	fishbone_scene = preload("res://scenes/pond_inhabitants/fish_bone.tscn")
+
 
 func _process(delta: float) -> void:
 	# If Xogotl is floating let him exhale bubbles.
 	if xogotl.current_state == Xogotl.STATE.FLOAT:
 		if bubbles_root.get_child_count() < MAX_BUBBLES:
-			if randf() > 0.995:
+			if randf() > BUBBLES_RANDOM_THRESHOLD:
 				var bubble : Bubble = bubble_scene.instantiate()
-				bubble.initialize(xogotl.global_position + Vector2(5 + randi_range(-5, +5), -15), $Playfield/BubblesMinY.global_position.y)
+				bubble.initialize(xogotl.global_position + Vector2(5 + randi_range(-5, +5), -15), marker_bubbly_min_y.global_position.y)
 				bubbles_root.add_child(bubble)
+				
+	
+	# Let the boat randomly drop fish bones.
+	probability_timer -= delta
+	if probability_timer < 0:
+		probability_timer += PROBALITY_TIMERANGE_SECONDS
+		
+		var random_percentage : float = randf()
+		GodotLogger.info("Probability timer is up", {"duration" : PROBALITY_TIMERANGE_SECONDS, "random_percentage" : random_percentage})
+		if random_percentage >= 1.0 - FISHBONE_PROBABILITY:
+			drop_fishbone()
+
+
+
+func drop_fishbone() -> void:
+	var fishbone : FishBone = fishbone_scene.instantiate()
+	fishbone.global_position = boat.global_position + Vector2(0, -10)
+	playfield.add_child(fishbone)
 
 
 func _on_xogotl_has_eaten_inhabitant(inhabitant: PondInhabitant) -> void:
@@ -52,3 +87,10 @@ func _on_xogotl_has_eaten_inhabitant(inhabitant: PondInhabitant) -> void:
 		PondInhabitant.INHABITANT_TYPE.FISH_BONE:
 			inhabitant.remove_from_pond()
 			score += 5
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	var touch : InputEventScreenTouch = event as InputEventScreenTouch
+	if touch:
+		pass
+		#drop_fishbone()

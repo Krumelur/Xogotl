@@ -31,7 +31,6 @@ radius = 3.0
 height = 14.0
 
 [node name="FishBone" type="Node2D"]
-position = Vector2(6, 3)
 script = ExtResource("1_vcx02")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

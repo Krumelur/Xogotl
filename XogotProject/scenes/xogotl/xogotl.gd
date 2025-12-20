@@ -8,6 +8,9 @@ enum STATE {
 
 signal has_eaten_inhabitant(inhabitant : PondInhabitant)
 
+@onready var sprite : Sprite2D = $XogotlSprite
+
+
 var local_target_pos: Vector2
 var num_limbs := 4
 var current_state : STATE = STATE.FLOAT
@@ -23,10 +26,10 @@ const FLOAT_SPEED := 1
 
 
 # Configures movement.
-const MAX_SPEED := 130.0          # speed cap
-const KICK_SPEED := 160.0         # initial push
-const DRAG_PER_SEC := 3.0         # higher = stops sooner (water resistance)
-const STEER_ACCEL := 70.0        # how much it tries to face the target while gliding
+const MAX_SPEED := 100.0          # speed cap
+const KICK_SPEED := 130.0         # initial push
+const DRAG_PER_SEC := 5.0         # higher = stops sooner (water resistance)
+const STEER_ACCEL := 20.0        # how much it tries to face the target while gliding
 const STOP_RADIUS := 2.0
 
 func _ready() -> void:
@@ -76,8 +79,15 @@ func _physics_process(delta: float) -> void:
 			current_state = STATE.FLOAT
 			
 		if move_and_slide():
-			GodotLogger.info("Collided")
+			GodotLogger.debug("Collided")
 
+func _process(delta: float) -> void:
+	if velocity.x < 0:
+		sprite.scale.x = -1.0
+		
+	if velocity.x > 0:
+		sprite.scale.x = 1.0
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	var touch : InputEventScreenTouch = event as InputEventScreenTouch

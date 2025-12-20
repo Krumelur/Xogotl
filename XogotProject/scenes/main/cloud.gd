@@ -8,7 +8,7 @@ extends Node2D
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	position.x += speed * delta
 	if position.x > get_viewport_rect().size.x:
 		position.x = -cloud_sprite.texture.get_width()

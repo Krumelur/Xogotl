@@ -16,7 +16,7 @@ func initialize(start_global_pos : Vector2, min_global_y : float) -> void:
 func set_random_speed() -> void:
 	_speed = randf_range(BUBBLE_MIN_SPEED, BUBBLE_MAX_SPEED)
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	if visible:
 		position.y -= delta * _speed
 		
