@@ -7,6 +7,5 @@
 script = ExtResource("1_gkjc8")
 
 [node name="BoatSprite" type="Sprite2D" parent="."]
-position = Vector2(-27, -18)
+position = Vector2(0, 8)
 texture = ExtResource("1_7ohuo")
-centered = false
