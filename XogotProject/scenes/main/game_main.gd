@@ -71,7 +71,9 @@ func _process(delta: float) -> void:
 		var random_percentage : float = randf()
 		GodotLogger.info("Probability timer is up", {"duration" : PROBALITY_TIMERANGE_SECONDS, "random_percentage" : random_percentage})
 		if random_percentage >= 1.0 - FISHBONE_PROBABILITY:
-			drop_fishbone()
+			# Only drop a fishbone if the boat is moving.
+			if boat.current_status == Boat.STATUS.MOVING:
+				drop_fishbone()
 
 
 

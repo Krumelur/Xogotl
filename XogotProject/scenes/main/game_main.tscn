@@ -116,7 +116,7 @@ position = Vector2(99, 57)
 position = Vector2(116, 93)
 
 [node name="Boat" parent="Playfield" instance=ExtResource("8_gfm1o")]
-position = Vector2(89, 33)
+position = Vector2(85, 18)
 
 [node name="WavesRoot" type="Node2D" parent="Playfield"]
 position = Vector2(11, 32)
