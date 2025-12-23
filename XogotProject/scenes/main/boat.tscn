@@ -1,11 +1,76 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqnao3wfq00mo"]
+[gd_scene load_steps=6 format=3 uid="uid://dqnao3wfq00mo"]
 
 [ext_resource type="Texture2D" uid="uid://8dgab8wdp1e5" path="res://gfx/boat.png" id="1_7ohuo"]
 [ext_resource type="Script" uid="uid://cpfoa87t3ai50" path="res://scenes/main/boat.gd" id="1_gkjc8"]
+[ext_resource type="Texture2D" uid="uid://dfboiwwvgxwy3" path="res://gfx/bubble.png" id="3_nprn7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nprn7"]
+radius = 3.0
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_fycn0"]
+b = Vector2(0, 20)
 
 [node name="Boat" type="Node2D"]
+position = Vector2(40, 50)
 script = ExtResource("1_gkjc8")
+
+[node name="BodyRodTip" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyRodTip"]
+shape = SubResource("CircleShape2D_nprn7")
+
+[node name="Line" type="Node2D" parent="BodyRodTip"]
+
+[node name="BodyLineSegment1" type="RigidBody2D" parent="BodyRodTip/Line"]
+
+[node name="Joint" type="PinJoint2D" parent="BodyRodTip/Line/BodyLineSegment1"]
+node_a = NodePath("../../..")
+node_b = NodePath("..")
+softness = 0.2
+
+[node name="Shape" type="CollisionShape2D" parent="BodyRodTip/Line/BodyLineSegment1"]
+shape = SubResource("SegmentShape2D_fycn0")
+
+[node name="BodyLineSegment2" type="RigidBody2D" parent="BodyRodTip/Line"]
+position = Vector2(0, 21)
+
+[node name="Joint" type="PinJoint2D" parent="BodyRodTip/Line/BodyLineSegment2"]
+node_a = NodePath("../../BodyLineSegment1")
+node_b = NodePath("..")
+softness = 0.5
+
+[node name="Shape" type="CollisionShape2D" parent="BodyRodTip/Line/BodyLineSegment2"]
+shape = SubResource("SegmentShape2D_fycn0")
+
+[node name="BodyLineSegment3" type="RigidBody2D" parent="BodyRodTip/Line"]
+position = Vector2(0, 42)
+
+[node name="Joint" type="PinJoint2D" parent="BodyRodTip/Line/BodyLineSegment3"]
+node_a = NodePath("../../BodyLineSegment2")
+node_b = NodePath("..")
+softness = 0.5
+
+[node name="Shape" type="CollisionShape2D" parent="BodyRodTip/Line/BodyLineSegment3"]
+shape = SubResource("SegmentShape2D_fycn0")
+
+[node name="Hook" type="RigidBody2D" parent="BodyRodTip/Line"]
+position = Vector2(0, 63)
+mass = 10.0
+
+[node name="Bubble" type="Sprite2D" parent="BodyRodTip/Line/Hook"]
+texture = ExtResource("3_nprn7")
+
+[node name="Joint" type="PinJoint2D" parent="BodyRodTip/Line/Hook"]
+node_a = NodePath("../../BodyLineSegment3")
+node_b = NodePath("..")
+softness = 0.5
+
+[node name="Shape" type="CollisionShape2D" parent="BodyRodTip/Line/Hook"]
+shape = SubResource("SegmentShape2D_fycn0")
 
 [node name="BoatSprite" type="Sprite2D" parent="."]
 position = Vector2(0, 8)
 texture = ExtResource("1_7ohuo")
+
+[node name="MarkerRodTip" type="Marker2D" parent="BoatSprite"]
+position = Vector2(-23, -24)

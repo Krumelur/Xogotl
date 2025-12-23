@@ -54,9 +54,9 @@ project/editorState=[{
 "path": "res://scenes/pond_inhabitants/fish_bone.gd",
 "type": "file"
 }, {
-"column": 0,
+"column": 39,
 "current": true,
-"line": 0,
+"line": 15,
 "path": "res://scenes/xogotl/xogotl.gd",
 "type": "file"
 }, {

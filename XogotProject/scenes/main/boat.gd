@@ -1,6 +1,7 @@
 class_name Boat
 extends Node2D
 
+@export var is_moving : bool = true
 @onready var boat_sprite : Sprite2D = $BoatSprite
 
 const MIN_SPEED : float = 1
@@ -41,6 +42,8 @@ func set_next_target_x() -> void:
 
 
 func _process(delta: float) -> void:
+	$BodyRodTip.global_position = $BoatSprite/MarkerRodTip.global_position
+
 	boat_sprite.scale.x = direction
 	
 	# Get absolute diatance between boat and next stopping point.
@@ -65,7 +68,8 @@ func _process(delta: float) -> void:
 		# Change the current speed towards the desired speed without overshooting.
 		current_speed = move_toward(current_speed, desired_speed, BOAT_ACCELERATION * delta)
 
-		position.x += current_speed * delta * direction
+		if is_moving:
+			position.x += current_speed * delta * direction
 		
 	create_rod(delta)
 
@@ -73,38 +77,25 @@ var curve_points : PackedVector2Array
 var drag_amount : float = 0
 
 func create_rod(delta: float) -> void:
-	var points_offset := Vector2(-23.0 * direction, -15.0)
-	const NUM_POINTS := 20
-	const DEPTH := 100.0
-	const DRAG_RESPONSE := 0.5
-	const BOW := 3.0
-	const TRAIL := 6.0
-
-	drag_amount = move_toward(drag_amount, current_speed, DRAG_RESPONSE * delta)
-	
+	var line_root :Node2D = $BodyRodTip/Line
+	var line_segments := line_root.get_children()
 	curve_points.clear()
-	curve_points.resize(NUM_POINTS)
-
-	for i in range(NUM_POINTS):
-		var t := float(i) / float(NUM_POINTS - 1)
-		var y := t * DEPTH
-
-		var bell := 4.0 * t * (1.0 - t)                 # 0..1..0
-		var x := bell * BOW * drag_amount * -direction  # mid-bow
-		x += lerp(0.0, TRAIL * drag_amount, t) * -direction  # endpoint trail
-
-		curve_points[i] = Vector2(x, y) + points_offset
-
+	
+	for line_segment : RigidBody2D in line_segments:
+		curve_points.append(to_local(line_segment.global_position))
+		
 	queue_redraw()
 	
 	
 func _draw() -> void:
 	draw_polyline(curve_points, Color.RED)
+	draw_circle($BodyRodTip.position, 5, Color.YELLOW)
 	
 	
 		
 func _unhandled_input(event: InputEvent) -> void:
 	var touch : InputEventScreenTouch = event as InputEventScreenTouch
 	if touch:
-		pass
+		GodotLogger.info("Applying force")
+		#$Line/BodyLineSegment3.apply_central_force(Vector2(500, 0))
 		
