@@ -2,21 +2,21 @@
 
 [ext_resource type="Texture2D" uid="uid://8dgab8wdp1e5" path="res://gfx/boat.png" id="1_7ohuo"]
 [ext_resource type="Script" uid="uid://cpfoa87t3ai50" path="res://scenes/main/boat.gd" id="1_gkjc8"]
-[ext_resource type="Texture2D" uid="uid://dfboiwwvgxwy3" path="res://gfx/bubble.png" id="3_nprn7"]
+[ext_resource type="Texture2D" uid="uid://o30dw3glaoch" path="res://gfx/hook.png" id="2_nprn7"]
 
 [node name="Boat" type="Node2D"]
-position = Vector2(40, 50)
 script = ExtResource("1_gkjc8")
 
 [node name="Hook" type="Sprite2D" parent="."]
 position = Vector2(-25, 14)
-texture = ExtResource("3_nprn7")
+texture = ExtResource("2_nprn7")
+centered = false
 
 [node name="MarkerLineStartLeft" type="Marker2D" parent="."]
-position = Vector2(-24, 14)
+position = Vector2(-25, 14)
 
 [node name="MarkerLineStartRight" type="Marker2D" parent="."]
-position = Vector2(25, 14)
+position = Vector2(26, 14)
 
 [node name="BoatSprite" type="Sprite2D" parent="."]
 position = Vector2(0, 8)

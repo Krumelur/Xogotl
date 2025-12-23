@@ -38,6 +38,9 @@ var direction : int = 1
 var current_speed : float = MIN_SPEED
 var stop_timer : float = 0
 
+var current_hook_marker : Marker2D
+	
+
 func _ready() -> void:
 	set_next_target_x()
 
@@ -65,6 +68,7 @@ var current_fishing_duration : float
 
 func _process(delta: float) -> void:
 	boat_sprite.scale.x = direction
+	current_hook_marker = marker_line_start_left if direction > 0 else marker_line_start_right
 	
 	# Boat is fishing.
 	if current_status == STATUS.FISHING:
@@ -91,6 +95,7 @@ func _process(delta: float) -> void:
 			GodotLogger.info("Boat hook lowered. New status is FISHING. Fishing duration:", current_fishing_duration)
 	# Boat is moving towards a new position.
 	elif current_status == STATUS.MOVING:
+		hook.position = current_hook_marker.position
 		# Get absolute diatance between boat and next stopping point.
 		var distance_to_target : float = absf(next_target_x - position.x)
 		
@@ -119,14 +124,13 @@ func _process(delta: float) -> void:
 func lower_hook(delta : float) -> bool:
 	var has_reached_depth : bool = false
 	current_hook_depth += delta * HOOK_SPEED
-	var current_marker : Marker2D = marker_line_start_left if direction > 0 else marker_line_start_right
 	
 	if current_hook_depth > hook_target_depth:
 		current_hook_depth = hook_target_depth
 		has_reached_depth = true
 	
-	hook.position.x = current_marker.position.x
-	hook.position.y = current_marker.position.y + current_hook_depth
+	hook.position.x = current_hook_marker.position.x
+	hook.position.y = current_hook_marker.position.y + current_hook_depth
 	queue_redraw()
 	return has_reached_depth
 
@@ -134,15 +138,14 @@ func lower_hook(delta : float) -> bool:
 # Raises hook and returns true if hook has resurfaced.
 func raise_hook(delta : float) -> bool:
 	current_hook_depth -= delta * HOOK_SPEED
-	var current_marker : Marker2D = marker_line_start_left if direction > 0 else marker_line_start_right
 	
 	if current_hook_depth < 0:
 		current_hook_depth = 0
-		hook.position = current_marker.position
+		hook.position = current_hook_marker.position
 		return true
 	
-	hook.position.x = current_marker.position.x
-	hook.position.y = current_marker.position.y + current_hook_depth
+	hook.position.x = current_hook_marker.position.x
+	hook.position.y = current_hook_marker.position.y + current_hook_depth
 	queue_redraw()
 	return false
 
@@ -150,8 +153,8 @@ func raise_hook(delta : float) -> bool:
 	
 func _draw() -> void:
 	if current_status in [STATUS.LOWERING_HOOK, STATUS.FISHING, STATUS.RAISING_HOOK]:
-		var current_marker : Marker2D = marker_line_start_left if direction > 0 else marker_line_start_right
-		draw_line(current_marker.position, hook.position, Color.html("b8b8b8"))
+		var current_hook_marker : Marker2D = marker_line_start_left if direction > 0 else marker_line_start_right
+		draw_line(current_hook_marker.position, hook.position, Color.html("b8b8b8"))
 	
 		
 func _unhandled_input(event: InputEvent) -> void:

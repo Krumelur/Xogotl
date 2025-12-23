@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://bg1p8dcaq130u"]
+
+[ext_resource type="Script" uid="uid://cmkb75sgi5bf" path="res://scenes/pond_inhabitants/eel.gd" id="1_c8p07"]
+[ext_resource type="Texture2D" uid="uid://j70tpd4pgu80" path="res://gfx/eel.png" id="2_ued73"]
+[ext_resource type="Script" uid="uid://ddn5by2vdweru" path="res://scenes/pond_inhabitants/base/pond_inhabitant_collider.gd" id="3_8w7wy"]
+[ext_resource type="Texture2D" uid="uid://bkpn4b5rn6qm3" path="res://gfx/eel_electric.png" id="4_ued73"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8w7wy"]
+atlas = ExtResource("2_ued73")
+region = Rect2(0, 0, 31, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30lkr"]
+atlas = ExtResource("2_ued73")
+region = Rect2(31, 0, 31, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s628v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8w7wy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30lkr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vcx02"]
+radius = 3.0
+height = 28.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cek01"]
+atlas = ExtResource("4_ued73")
+region = Rect2(0, 0, 31, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fa26e"]
+atlas = ExtResource("4_ued73")
+region = Rect2(31, 0, 31, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xdj2v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cek01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fa26e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Eel" type="Node2D"]
+script = ExtResource("1_c8p07")
+
+[node name="EelSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s628v")
+autoplay = "default"
+centered = false
+
+[node name="PondInhabitantCollider" type="Area2D" parent="."]
+position = Vector2(15, 8)
+script = ExtResource("3_8w7wy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PondInhabitantCollider"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vcx02")
+
+[node name="ElectricSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xdj2v")
+autoplay = "default"
+centered = false

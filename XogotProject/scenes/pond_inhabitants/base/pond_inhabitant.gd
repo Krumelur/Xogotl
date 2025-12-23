@@ -5,7 +5,8 @@ enum INHABITANT_TYPE {
 	UNKNOWN,
 	FISH_BONE,
 	SHRIMP,
-	WORM
+	WORM,
+	EEL
 }
 
 # Override this in subclass to return correct type.
@@ -16,4 +17,3 @@ func get_inhabitant_type() -> INHABITANT_TYPE:
 func remove_from_pond() -> void:
 	get_parent().remove_child(self)
 	queue_free()
-

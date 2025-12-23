@@ -1,3 +1,4 @@
+
 class_name FishBone
 extends PondInhabitant
 
@@ -37,7 +38,7 @@ func _process(delta: float) -> void:
 
 func throw_over_board() -> void:
 	var tween = create_tween()
-	tween.tween_property(self, "position:y", -20, 0.35).as_relative().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "position:y", -10, 0.35).as_relative().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "position:y", 30, 0.65).as_relative().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	tween.play()
 	await tween.finished
