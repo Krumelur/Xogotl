@@ -31,6 +31,13 @@ window/stretch/mode="viewport"
 
 enabled=PackedStringArray("res://addons/logger/plugin.cfg")
 
+[global_group]
+
+GROUP_SHRIMP=""
+GROUP_EEL=""
+GROUP_FISHBONE=""
+GROUP_WORM=""
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true

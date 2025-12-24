@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cmkb75sgi5bf" path="res://scenes/pond_inhabitants/eel.gd" id="1_c8p07"]
 [ext_resource type="Texture2D" uid="uid://j70tpd4pgu80" path="res://gfx/eel.png" id="2_ued73"]
-[ext_resource type="Script" uid="uid://ddn5by2vdweru" path="res://scenes/pond_inhabitants/base/pond_inhabitant_collider.gd" id="3_8w7wy"]
+[ext_resource type="PackedScene" uid="uid://casdp7x76w0ct" path="res://scenes/pond_inhabitants/pond_inhabitant_collider.tscn" id="4_8w7wy"]
 [ext_resource type="Texture2D" uid="uid://bkpn4b5rn6qm3" path="res://gfx/eel_electric.png" id="4_ued73"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8w7wy"]
@@ -27,10 +27,6 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vcx02"]
-radius = 3.0
-height = 28.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_cek01"]
 atlas = ExtResource("4_ued73")
 region = Rect2(0, 0, 31, 14)
@@ -53,7 +49,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Eel" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ued73"]
+radius = 3.9999995
+height = 28.0
+
+[node name="Eel" type="Node2D" groups=["GROUP_EEL"]]
 script = ExtResource("1_c8p07")
 
 [node name="EelSprite" type="AnimatedSprite2D" parent="."]
@@ -61,16 +61,14 @@ sprite_frames = SubResource("SpriteFrames_s628v")
 autoplay = "default"
 centered = false
 
-[node name="PondInhabitantCollider" type="Area2D" parent="."]
-position = Vector2(15, 8)
-script = ExtResource("3_8w7wy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PondInhabitantCollider"]
-position = Vector2(0, 1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_vcx02")
-
 [node name="ElectricSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xdj2v")
 autoplay = "default"
 centered = false
+
+[node name="PondInhabitantCollider" parent="." instance=ExtResource("4_8w7wy")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PondInhabitantCollider"]
+position = Vector2(16, 8)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ued73")

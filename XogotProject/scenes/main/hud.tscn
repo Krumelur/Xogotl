@@ -1,25 +1,60 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdvpk21cn1b7o"]
+[gd_scene load_steps=3 format=3 uid="uid://bdvpk21cn1b7o"]
 
 [ext_resource type="Script" uid="uid://coc05rg2j41n2" path="res://scenes/main/hud.gd" id="1_wfueu"]
+[ext_resource type="FontFile" uid="uid://22075gshcbqf" path="res://PrStart.ttf" id="2_ga13h"]
 
 [node name="HudRoot" type="Node2D"]
 script = ExtResource("1_wfueu")
 
-[node name="Score" type="Label" parent="."]
-offset_left = 115.0
-offset_right = 175.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+[node name="Energy" type="Label" parent="."]
+offset_left = 68.0
+offset_top = 2.0
+offset_right = 118.0
+offset_bottom = 25.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-text = "0000"
-horizontal_alignment = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("2_ga13h")
+theme_override_font_sizes/font_size = 8
+text = "Energy
+0"
+horizontal_alignment = 1
 
-[node name="Food" type="Label" parent="."]
-offset_left = 3.0
-offset_right = 53.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+[node name="Score" type="Label" parent="."]
+offset_left = 134.0
+offset_top = 2.0
+offset_right = 180.0
+offset_bottom = 25.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-text = "0000"
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("2_ga13h")
+theme_override_font_sizes/font_size = 8
+text = "Score
+0000"
+horizontal_alignment = 1
+
+[node name="LimbsProgressMax" type="ColorRect" parent="."]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 52.0
+offset_bottom = 3.0
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="LimbsProgressCurrent" type="ColorRect" parent="LimbsProgressMax"]
+layout_mode = 0
+offset_right = 33.0
+offset_bottom = 1.0
+color = Color(0.3178683, 0.8481835, 0.34300897, 1)
+
+[node name="Limbs" type="Label" parent="LimbsProgressMax"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 48.0
+offset_bottom = 22.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("2_ga13h")
+theme_override_font_sizes/font_size = 8
+text = "Limbs
+0"
+horizontal_alignment = 1

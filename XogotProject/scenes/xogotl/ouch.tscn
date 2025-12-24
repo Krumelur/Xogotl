@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhfyg5oi7hcxi"]
+
+[ext_resource type="Texture2D" uid="uid://r0f5u8m6gln2" path="res://gfx/ouch.png" id="2_e53bf"]
+
+[sub_resource type="Animation" id="Animation_mpmud"]
+resource_name = "flash"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ouch:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e53bf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ouch:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aane2"]
+_data = {
+&"RESET": SubResource("Animation_e53bf"),
+&"flash": SubResource("Animation_mpmud")
+}
+
+[node name="Ouch" type="Node2D"]
+
+[node name="Ouch" type="Sprite2D" parent="."]
+texture = ExtResource("2_e53bf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_aane2")
+}
+autoplay = "flash"
+speed_scale = 8.0

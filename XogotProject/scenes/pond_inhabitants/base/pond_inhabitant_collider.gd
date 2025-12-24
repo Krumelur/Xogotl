@@ -1,3 +1,4 @@
+@tool
 class_name PondInhabitantCollider
 extends Area2D
 

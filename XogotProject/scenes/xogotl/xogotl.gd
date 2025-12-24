@@ -3,16 +3,18 @@ extends CharacterBody2D
 
 enum STATE {
 	FLOAT,
-	MOVE
+	MOVE,
+	HURT
 }
 
 signal has_eaten_inhabitant(inhabitant : PondInhabitant)
+signal has_touched_inhabitant(inhabitant : PondInhabitant)
 
 @onready var sprite : Sprite2D = $XogotlSprite
-
+@onready var ouch : Node2D = $XogotlSprite/Ouch
 
 var local_target_pos: Vector2
-var num_limbs := 4
+var num_limbs : int = 4
 var current_state : STATE = STATE.FLOAT
 var float_time : float
 
@@ -32,6 +34,9 @@ const DRAG_PER_SEC := 5.0         # higher = stops sooner (water resistance)
 const STEER_ACCEL := 20.0        # how much it tries to face the target while gliding
 const STOP_RADIUS := 2.0
 
+const LIMB_GROW_DURATION : float = 5
+var limb_grow_progress : float = 0
+
 func _ready() -> void:
 	current_state = STATE.FLOAT
 	local_target_pos = position
@@ -39,6 +44,11 @@ func _ready() -> void:
 	# Get bubbles.
 	bubbles.assign(get_tree().get_nodes_in_group("group_bubbles"))
 	
+const KNOCKBACK_STRENGTH : float = 300
+const KNOCKBACK_DECAY : float = 1000
+var knockback_direction : Vector2 = Vector2.ZERO
+var knockback_velocity : Vector2 = Vector2.ZERO
+
 
 func _physics_process(delta: float) -> void:
 	if current_state == STATE.FLOAT:
@@ -48,6 +58,16 @@ func _physics_process(delta: float) -> void:
 			float_tween.tween_property(self, "position:y", FLOAT_AMPLITUDE, FLOAT_SPEED).as_relative()
 			float_tween.tween_property(self, "position:y", -FLOAT_AMPLITUDE, FLOAT_SPEED).as_relative()
 			float_tween.play()
+	elif current_state == STATE.HURT:
+		# Apply knockback
+		velocity = knockback_velocity
+		move_and_slide()
+		# Smoothly reduce knockback over time
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, KNOCKBACK_DECAY * delta)
+		if knockback_velocity.length() <= 5:
+			knockback_velocity = Vector2.ZERO
+			velocity = Vector2.ZERO
+			current_state = STATE.FLOAT
 	else:
 		if float_tween:
 			float_tween.stop()
@@ -81,7 +101,21 @@ func _physics_process(delta: float) -> void:
 		if move_and_slide():
 			GodotLogger.debug("Collided")
 
+func get_limb_grow_progress() -> float:
+	if num_limbs < 4:
+		return limb_grow_progress / LIMB_GROW_DURATION
+	else:
+		return 0
+
 func _process(delta: float) -> void:
+	ouch.visible = current_state == STATE.HURT
+	
+	limb_grow_progress += delta
+	if get_limb_grow_progress() >= 1.0:
+		GodotLogger.debug("Grow limb progress", limb_grow_progress)
+		num_limbs += 1
+		limb_grow_progress = 0
+		
 	if velocity.x < 0:
 		sprite.scale.x = -1.0
 		
@@ -92,6 +126,9 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	var touch : InputEventScreenTouch = event as InputEventScreenTouch
 	if touch:
+		if current_state == STATE.HURT:
+			return
+			
 		local_target_pos = touch.position
 		#local_target_pos.x = clamp(local_target_pos.x, 8.0, 152.0)
 		#local_target_pos.y = clamp(local_target_pos.y, 120.0, 192.0)
@@ -107,12 +144,28 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _mouth_area_entered(area: Area2D) -> void:
 	# Called if AreaMouth collides with another area.
-	# Check if we're esting a pond inhabitant and react.
+	# Check if we're eating a pond inhabitant and react.
 	var inhabitant_collider : PondInhabitantCollider = area as PondInhabitantCollider
 	if inhabitant_collider:
 		var inhabitant : PondInhabitant = inhabitant_collider.get_inhabitant()
 		if inhabitant:
 			has_eaten_inhabitant.emit(inhabitant)
-			var inhabitant_type : PondInhabitant.INHABITANT_TYPE = inhabitant.get_inhabitant_type()
-			GodotLogger.info("Xogotl eating", inhabitant_type)
-	
+
+
+func _body_area_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	# Check if we're hitting an evil pond inhabitant.
+	var inhabitant_collider : PondInhabitantCollider = area as PondInhabitantCollider
+	if inhabitant_collider:
+		var inhabitant : PondInhabitant = inhabitant_collider.get_inhabitant()
+		if inhabitant:
+			has_touched_inhabitant.emit(inhabitant)
+
+func hurt(inhabitant : PondInhabitant) -> void:
+	num_limbs -= 1
+	limb_grow_progress = 0.0
+	GodotLogger.info("Limbs left", num_limbs)
+	if current_state == STATE.HURT:
+		return
+	var knockback_direction : Vector2 = (global_position - inhabitant.global_position).normalized()
+	knockback_velocity = knockback_direction * KNOCKBACK_STRENGTH
+	current_state = STATE.HURT

@@ -9,11 +9,12 @@ enum STATUS {
 	RAISING_HOOK
 }
 
+signal request_bait(hook : Node2D)
+
 @onready var boat_sprite : Sprite2D = $BoatSprite
 @onready var hook : Node2D = $Hook
 @onready var marker_line_start_left : Marker2D = $MarkerLineStartLeft
 @onready var marker_line_start_right : Marker2D = $MarkerLineStartRight
-
 
 const MIN_SPEED : float = 1
 const SLOW_DOWN_DISTANCE : float = 10
@@ -29,6 +30,7 @@ const MAX_HOOK_DEPTH : int = 105
 const MIN_FISHING_DURATION : float = 2
 const MAX_FISHING_DURATION : float = 5
 
+var bait : Node2D = null
 
 var current_status : STATUS = STATUS.MOVING
 var current_hook_depth : float = 0
@@ -67,6 +69,11 @@ var hook_target_depth : int
 var current_fishing_duration : float
 
 func _process(delta: float) -> void:
+	# Provided by main game when receiveing signal to provide a bait.
+	if hook.get_child_count() > 0:
+		bait = hook.get_child(0)
+		bait.position = Vector2(0, 0)
+	
 	boat_sprite.scale.x = direction
 	current_hook_marker = marker_line_start_left if direction > 0 else marker_line_start_right
 	
@@ -86,6 +93,7 @@ func _process(delta: float) -> void:
 	elif current_status == STATUS.STOPPED:
 		hook_target_depth = randi_range(MIN_HOOK_DEPTH, MAX_HOOK_DEPTH)
 		GodotLogger.info("Boat has STOPPED. Lowering hook. Target hook depth:", hook_target_depth)
+		request_bait.emit(hook)
 		current_status = STATUS.LOWERING_HOOK
 	# Boat is stopped and hook is being lowered.
 	elif current_status == STATUS.LOWERING_HOOK:
@@ -95,6 +103,10 @@ func _process(delta: float) -> void:
 			GodotLogger.info("Boat hook lowered. New status is FISHING. Fishing duration:", current_fishing_duration)
 	# Boat is moving towards a new position.
 	elif current_status == STATUS.MOVING:
+		if bait:
+			hook.remove_child(bait)
+			bait = null
+			
 		hook.position = current_hook_marker.position
 		# Get absolute diatance between boat and next stopping point.
 		var distance_to_target : float = absf(next_target_x - position.x)
@@ -153,7 +165,6 @@ func raise_hook(delta : float) -> bool:
 	
 func _draw() -> void:
 	if current_status in [STATUS.LOWERING_HOOK, STATUS.FISHING, STATUS.RAISING_HOOK]:
-		var current_hook_marker : Marker2D = marker_line_start_left if direction > 0 else marker_line_start_right
 		draw_line(current_hook_marker.position, hook.position, Color.html("b8b8b8"))
 	
 		

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://casdp7x76w0ct"]
+
+[ext_resource type="Script" uid="uid://ddn5by2vdweru" path="res://scenes/pond_inhabitants/base/pond_inhabitant_collider.gd" id="1_ft71j"]
+
+[node name="PondInhabitantCollider" type="Area2D"]
+script = ExtResource("1_ft71j")

@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjyysirxqi8ii"]
+[gd_scene load_steps=7 format=3 uid="uid://cjyysirxqi8ii"]
 
 [ext_resource type="Script" uid="uid://h13cp1vhy2i5" path="res://scenes/xogotl/xogotl.gd" id="1_f34km"]
 [ext_resource type="Texture2D" uid="uid://c02w16xthag7a" path="res://gfx/xogotl.png" id="2_we52l"]
+[ext_resource type="PackedScene" uid="uid://bhfyg5oi7hcxi" path="res://scenes/xogotl/ouch.tscn" id="3_0yqq3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f34km"]
 radius = 4.99999
 height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0yqq3"]
+radius = 5.0000005
+height = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a1t1e"]
 radius = 2.00166
@@ -26,6 +31,13 @@ shape = SubResource("CapsuleShape2D_f34km")
 position = Vector2(0, -8)
 texture = ExtResource("2_we52l")
 
+[node name="AreaBody" type="Area2D" parent="XogotlSprite"]
+
+[node name="ColliderBody" type="CollisionShape2D" parent="XogotlSprite/AreaBody"]
+position = Vector2(0, 1.9999995)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0yqq3")
+
 [node name="AreaMouth" type="Area2D" parent="XogotlSprite"]
 position = Vector2(0, 8)
 
@@ -33,4 +45,8 @@ position = Vector2(0, 8)
 position = Vector2(5, -7)
 shape = SubResource("CircleShape2D_a1t1e")
 
+[node name="Ouch" parent="XogotlSprite" instance=ExtResource("3_0yqq3")]
+visible = false
+
+[connection signal="area_shape_entered" from="XogotlSprite/AreaBody" to="." method="_body_area_entered"]
 [connection signal="area_entered" from="XogotlSprite/AreaMouth" to="." method="_mouth_area_entered"]

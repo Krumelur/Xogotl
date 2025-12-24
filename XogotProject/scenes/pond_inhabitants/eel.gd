@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 	position.x += SPEED * delta * direction
 	
 	if direction == -1 and position.x < -31:
-		initialize()
+		remove_from_pond()
 	elif direction == 1 and position.x >= 210:
-		initialize()
+		remove_from_pond()
 		

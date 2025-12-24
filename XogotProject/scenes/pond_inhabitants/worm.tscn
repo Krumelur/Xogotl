@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://gmch15bfhgtj"]
+[gd_scene load_steps=8 format=3 uid="uid://0vbda0b3iv7l"]
 
+[ext_resource type="Script" uid="uid://clb6fvrvledvp" path="res://scenes/pond_inhabitants/worm.gd" id="1_fqvop"]
 [ext_resource type="Texture2D" uid="uid://sq1xn4ab14d" path="res://gfx/worm.png" id="1_hvrp0"]
+[ext_resource type="PackedScene" uid="uid://casdp7x76w0ct" path="res://scenes/pond_inhabitants/pond_inhabitant_collider.tscn" id="3_hblvd"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ow8q5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqvop"]
 atlas = ExtResource("1_hvrp0")
 region = Rect2(0, 0, 7, 11)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f4y75"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdb18"]
 atlas = ExtResource("1_hvrp0")
 region = Rect2(8, 0, 7, 11)
 
@@ -14,19 +16,28 @@ region = Rect2(8, 0, 7, 11)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ow8q5")
+"texture": SubResource("AtlasTexture_fqvop")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f4y75")
+"texture": SubResource("AtlasTexture_qdb18")
 }],
 "loop": true,
 "name": &"default",
-"speed": 2.0
+"speed": 5.0
 }]
 
-[node name="Worm" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_s6mvk"]
+radius = 5.0
+
+[node name="Worm" type="Node2D" groups=["GROUP_WORM"]]
+script = ExtResource("1_fqvop")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_s628v")
 autoplay = "default"
-frame_progress = 0.807449
+
+[node name="PondInhabitantCollider" parent="." instance=ExtResource("3_hblvd")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PondInhabitantCollider"]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_s6mvk")
