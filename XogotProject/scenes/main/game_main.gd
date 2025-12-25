@@ -15,11 +15,6 @@ extends Node2D
 @onready var playfield : Node2D = $Playfield
 @onready var boat : Boat = $Playfield/Boat
 
-var energy : int = 100 : 
-	set(value):
-		GodotLogger.info("Energy", value)
-		energy = value
-		hud.update_energy(energy)
 	
 var score : int = 0:
 	set(value):
@@ -73,6 +68,7 @@ func _process(delta: float) -> void:
 	if num_eels < max_eels:
 		playfield.add_child(packed_eel.instantiate())
 	
+	hud.update_energy(xogotl.energy)
 	hud.update_limbs(xogotl.num_limbs, xogotl.get_limb_grow_progress())
 	
 	# If Xogotl is floating let him exhale bubbles.

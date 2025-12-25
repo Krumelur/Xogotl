@@ -78,8 +78,6 @@ size = Vector2(167, 12)
 
 [node name="GameMain" type="Node2D"]
 script = ExtResource("1_womm6")
-max_shrimps = null
-max_eels = null
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(180, 200)

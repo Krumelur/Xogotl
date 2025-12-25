@@ -17,6 +17,7 @@ var local_target_pos: Vector2
 var num_limbs : int = 4
 var current_state : STATE = STATE.FLOAT
 var float_time : float
+var energy : float
 
 var bubbles : Array[Bubble] = []
 
@@ -37,7 +38,15 @@ const STOP_RADIUS := 2.0
 const LIMB_GROW_DURATION : float = 5
 var limb_grow_progress : float = 0
 
+# Losing energy over time.
+const ENERGY_LOSS_DEFAULT : float = 0.02
+# Losing energy when touching enemy (absolute).
+const ENERGY_LOSS_ENEMY : float = 0.05
+# Losing enemy when moving (absolute).
+const ENERGY_LOSS_IMPULSE : float = 0.02
+
 func _ready() -> void:
+	energy = 1.0
 	current_state = STATE.FLOAT
 	local_target_pos = position
 	
@@ -100,6 +109,7 @@ func _physics_process(delta: float) -> void:
 			
 		if move_and_slide():
 			GodotLogger.debug("Collided")
+			
 
 func get_limb_grow_progress() -> float:
 	if num_limbs < 4:
@@ -108,6 +118,8 @@ func get_limb_grow_progress() -> float:
 		return 0
 
 func _process(delta: float) -> void:
+	energy -= delta * ENERGY_LOSS_DEFAULT
+	
 	ouch.visible = current_state == STATE.HURT
 	
 	limb_grow_progress += delta
@@ -138,7 +150,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		# One strong kick, adds onto current movement (feels like momentum)
 		velocity += dir * (KICK_SPEED * limb_factor)
-		
+		energy -= ENERGY_LOSS_IMPULSE
 		current_state = STATE.MOVE
 
 
@@ -169,3 +181,5 @@ func hurt(inhabitant : PondInhabitant) -> void:
 	var knockback_direction : Vector2 = (global_position - inhabitant.global_position).normalized()
 	knockback_velocity = knockback_direction * KNOCKBACK_STRENGTH
 	current_state = STATE.HURT
+	
+	energy -= ENERGY_LOSS_ENEMY
