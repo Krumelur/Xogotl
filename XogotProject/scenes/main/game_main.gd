@@ -4,6 +4,7 @@ class_name GameMain
 
 extends Node2D
 
+@export var increas_max_eels_score : int = 1000
 @export var max_shrimps : int = 4
 @export var max_eels : int = 3
 
@@ -15,6 +16,7 @@ extends Node2D
 @onready var playfield : Node2D = $Playfield
 @onready var boat : Boat = $Playfield/Boat
 
+var is_game_over : bool = false
 	
 var score : int = 0:
 	set(value):
@@ -42,6 +44,9 @@ var packed_eel : PackedScene
 var packed_worm : PackedScene
 
 func _ready() -> void:
+	is_game_over = false
+	hud.hide_game_over()
+	
 	# A tween to make waves animate up and down.
 	var waves_tween = create_tween()
 	waves_tween.set_loops(0)
@@ -59,8 +64,21 @@ func _ready() -> void:
 	
 	hud.update_limbs(xogotl.num_limbs, xogotl.get_limb_grow_progress())
 
-
+func game_over(reason : String) -> void:
+	hud.show_game_over(reason)
+	xogotl.visible = false
+	get_tree().paused = true
+	is_game_over = true
+	
 func _process(delta: float) -> void:
+	if is_game_over:
+		return
+	
+	# TODO: Fix!
+	if score > 0 and (score % increas_max_eels_score == 0):
+		max_eels += 1
+		GodotLogger.info("New max eels", max_eels)
+	
 	var num_shrimps : int = get_tree().get_node_count_in_group("GROUP_SHRIMP")
 	var num_eels : int = get_tree().get_node_count_in_group("GROUP_EEL")
 	if num_shrimps < max_shrimps:
@@ -70,6 +88,14 @@ func _process(delta: float) -> void:
 	
 	hud.update_energy(xogotl.energy)
 	hud.update_limbs(xogotl.num_limbs, xogotl.get_limb_grow_progress())
+	
+	# Check if game is over.
+	if xogotl.num_limbs <= 0:
+		is_game_over = true
+		game_over("You lost all your limbs!")
+	if xogotl.energy <= 0:
+		is_game_over = true
+		game_over("Out of energy!")
 	
 	# If Xogotl is floating let him exhale bubbles.
 	if xogotl.current_state == Xogotl.STATE.FLOAT:
@@ -101,17 +127,22 @@ func drop_fishbone() -> void:
 
 
 func _on_xogotl_has_eaten_inhabitant(inhabitant: PondInhabitant) -> void:
+	# Eating pond inhabitants increases score and
+	# gives the Xogotl back some energy.
 	var type : PondInhabitant.INHABITANT_TYPE = inhabitant.get_inhabitant_type()
 	match type:
 		PondInhabitant.INHABITANT_TYPE.FISH_BONE:
 			inhabitant.remove_from_pond()
-			score += 5
+			score += 50
+			xogotl.energy += 0.05
 		PondInhabitant.INHABITANT_TYPE.SHRIMP:
 			inhabitant.remove_from_pond()
-			score += 10
+			score += 100
+			xogotl.energy += 0.10
 		PondInhabitant.INHABITANT_TYPE.WORM:
 			inhabitant.remove_from_pond()
-			score += 15
+			score += 150
+			xogotl.energy += 0.15
 
 
 func _on_boat_request_bait(hook: Node2D) -> void:

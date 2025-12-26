@@ -17,7 +17,10 @@ var local_target_pos: Vector2
 var num_limbs : int = 4
 var current_state : STATE = STATE.FLOAT
 var float_time : float
-var energy : float
+var energy : float:
+	set(value):
+		energy = value
+		energy  = clamp(energy, 0.0, 1.0)
 
 var bubbles : Array[Bubble] = []
 
@@ -39,7 +42,7 @@ const LIMB_GROW_DURATION : float = 5
 var limb_grow_progress : float = 0
 
 # Losing energy over time.
-const ENERGY_LOSS_DEFAULT : float = 0.02
+const ENERGY_LOSS_DEFAULT : float = 0.01
 # Losing energy when touching enemy (absolute).
 const ENERGY_LOSS_ENEMY : float = 0.05
 # Losing enemy when moving (absolute).

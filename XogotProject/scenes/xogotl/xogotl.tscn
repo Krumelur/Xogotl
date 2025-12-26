@@ -13,7 +13,7 @@ radius = 5.0000005
 height = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a1t1e"]
-radius = 2.00166
+radius = 5.0
 
 [node name="CharacterBody" type="CharacterBody2D"]
 disable_mode = 2
@@ -42,7 +42,7 @@ shape = SubResource("CapsuleShape2D_0yqq3")
 position = Vector2(0, 8)
 
 [node name="ColliderMouth" type="CollisionShape2D" parent="XogotlSprite/AreaMouth"]
-position = Vector2(5, -7)
+position = Vector2(5, -9)
 shape = SubResource("CircleShape2D_a1t1e")
 
 [node name="Ouch" parent="XogotlSprite" instance=ExtResource("3_0yqq3")]
