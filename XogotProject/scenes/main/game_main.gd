@@ -4,9 +4,12 @@ class_name GameMain
 
 extends Node2D
 
-@export var increas_max_eels_score : int = 1000
+# Defines how many points player has to score before a new eel is added
+# as an enemy.
+@export var increase_max_eels_score_threshold : int = 1000
 @export var max_shrimps : int = 4
 @export var max_eels : int = 3
+
 
 @onready var waves_root : Node2D = $Playfield/WavesRoot
 @onready var hud : Hud = $CanvasLayerHud/HudRoot
@@ -17,10 +20,23 @@ extends Node2D
 @onready var boat : Boat = $Playfield/Boat
 
 var is_game_over : bool = false
+var next_eel_score : int = 0
 	
 var score : int = 0:
 	set(value):
 		GodotLogger.info("Score", value)
+		# Check if a new eel is added.
+		if score > 0:
+			var diff : int = value - score
+			next_eel_score += diff
+			if next_eel_score >= increase_max_eels_score_threshold:
+				next_eel_score -= increase_max_eels_score_threshold
+				max_eels += 1
+				GodotLogger.info("New max eels", max_eels)
+		else:
+			next_eel_score = 0
+			
+		# Update regular score.
 		score = value
 		hud.update_score(score)
 
@@ -46,6 +62,8 @@ var packed_worm : PackedScene
 func _ready() -> void:
 	is_game_over = false
 	hud.hide_game_over()
+	
+	score = 0
 	
 	# A tween to make waves animate up and down.
 	var waves_tween = create_tween()
@@ -73,11 +91,6 @@ func game_over(reason : String) -> void:
 func _process(delta: float) -> void:
 	if is_game_over:
 		return
-	
-	# TODO: Fix!
-	if score > 0 and (score % increas_max_eels_score == 0):
-		max_eels += 1
-		GodotLogger.info("New max eels", max_eels)
 	
 	var num_shrimps : int = get_tree().get_node_count_in_group("GROUP_SHRIMP")
 	var num_eels : int = get_tree().get_node_count_in_group("GROUP_EEL")

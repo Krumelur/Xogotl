@@ -22,7 +22,7 @@ func update_energy(energy : float) -> void:
 
 
 func update_score(score : int) -> void:
-	$Score.text = "Score\n%04d" % score
+	$Score.text = "Score\n%d" % score
 
 
 func update_limbs(num_limbs : int, grow_progress : float) -> void:

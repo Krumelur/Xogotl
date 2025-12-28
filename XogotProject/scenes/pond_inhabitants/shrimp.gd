@@ -12,6 +12,7 @@ const MAX_Y : float = 200
 
 
 var wobble_tween : Tween
+var fadein_tween : Tween
 var direction : int = 0
 var drift : float = 0
 var speed : float = 4
@@ -28,6 +29,14 @@ func initialize() -> void:
 	drift = randf_range(MIN_DRIFT, MAX_DRIFT)
 	position.x = randf_range(MIN_X, MAX_X)
 	position.y = randf_range(MIN_Y, MAX_Y)
+	
+	# Fade in sprite as shrimp is added.
+	sprite.self_modulate.a = 0.0
+	fadein_tween = create_tween()
+	fadein_tween.tween_property(sprite, "self_modulate:a", 1.0, 3)
+	fadein_tween.set_loops(1)
+	fadein_tween.play()
+
 
 func _ready() -> void:
 	wobble_tween = create_tween()
@@ -35,6 +44,7 @@ func _ready() -> void:
 	wobble_tween.tween_property(sprite, "position:y", -wobble_strength, wobble_duration).as_relative()
 	wobble_tween.set_loops(0)
 	wobble_tween.play()
+	
 	
 	initialize()
 	

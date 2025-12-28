@@ -2,7 +2,7 @@ class_name Eel
 extends PondInhabitant
 
 const MIN_SPEED : float = 13
-const MAX_SPEED : float = 20
+const MAX_SPEED : float = 30
 const MIN_Y : int = 40
 const MAX_Y : int = 170
 
