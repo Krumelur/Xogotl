@@ -18,6 +18,7 @@ func update_energy(energy : float) -> void:
 	var label = $EnergyMax/Text
 	
 	rect.size.x = energy * rect_max.size.x
+	rect.color = get_energy_color(rect.size.x / rect_max.size.x)
 	label.text = "Energy\n%d%%" % int(round(energy * 100))
 
 
@@ -31,7 +32,9 @@ func update_limbs(num_limbs : int, grow_progress : float) -> void:
 	var label = $LimbsProgressMax/Text
 	
 	rect.size.x = grow_progress * rect_max.size.x
+	rect.color = get_energy_color(rect.size.x / rect_max.size.x)
 	label.text = "Limbs\n%d" % num_limbs
+	
 	
 func _unhandled_input(event: InputEvent) -> void:
 	var touch : InputEventScreenTouch = event as InputEventScreenTouch
@@ -41,4 +44,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			await global.transition_to_scene("res://scenes/main/game_main.tscn")
 			hide_game_over()
 			
-			
+		
+func get_energy_color(percentage : float) -> Color:
+		var color_min : Color = Color.html("C03030")
+		var color_max : Color = Color.html("30A860")
+		var lerp_color : Color = color_min.lerp(color_max, percentage)
+		return lerp_color
