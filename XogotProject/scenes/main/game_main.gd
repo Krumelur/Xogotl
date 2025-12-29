@@ -144,14 +144,21 @@ func _on_xogotl_has_eaten_inhabitant(inhabitant: PondInhabitant) -> void:
 	# gives the Xogotl back some energy.
 	var type : PondInhabitant.INHABITANT_TYPE = inhabitant.get_inhabitant_type()
 	match type:
+		PondInhabitant.INHABITANT_TYPE.GIFT:
+			inhabitant.remove_from_pond()
+			score += 150
+			xogotl.energy += 0.25
+			
 		PondInhabitant.INHABITANT_TYPE.FISH_BONE:
 			inhabitant.remove_from_pond()
 			score += 50
 			xogotl.energy += 0.05
+		
 		PondInhabitant.INHABITANT_TYPE.SHRIMP:
 			inhabitant.remove_from_pond()
 			score += 100
 			xogotl.energy += 0.10
+		
 		PondInhabitant.INHABITANT_TYPE.WORM:
 			inhabitant.remove_from_pond()
 			score += 150

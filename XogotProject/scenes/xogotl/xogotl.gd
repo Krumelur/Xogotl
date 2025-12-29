@@ -10,8 +10,9 @@ enum STATE {
 signal has_eaten_inhabitant(inhabitant : PondInhabitant)
 signal has_touched_inhabitant(inhabitant : PondInhabitant)
 
-@onready var sprite : Sprite2D = $XogotlSprite
+@onready var sprite : AnimatedSprite2D = $XogotlSprite
 @onready var ouch : Node2D = $XogotlSprite/Ouch
+@onready var impulse_bubbles_emitter : CPUParticles2D = $XogotlSprite/ImpulseBubblesEmitter
 
 var local_target_pos: Vector2
 var num_limbs : int = 4
@@ -41,14 +42,16 @@ const STOP_RADIUS := 2.0
 const LIMB_GROW_DURATION : float = 5
 var limb_grow_progress : float = 0
 
-# Losing energy over time.
-const ENERGY_LOSS_DEFAULT : float = 0.01
+# Losing energy over time (higher value = more loss).
+const ENERGY_LOSS_DEFAULT : float = 0.015
 # Losing energy when touching enemy (absolute).
 const ENERGY_LOSS_ENEMY : float = 0.05
 # Losing enemy when moving (absolute).
 const ENERGY_LOSS_IMPULSE : float = 0.02
 
+
 func _ready() -> void:
+	impulse_bubbles_emitter.emitting = false
 	energy = 1.0
 	current_state = STATE.FLOAT
 	local_target_pos = position
@@ -81,6 +84,7 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2.ZERO
 			current_state = STATE.FLOAT
 	else:
+		# Moving
 		if float_tween:
 			float_tween.stop()
 			float_tween = null
@@ -107,7 +111,7 @@ func _physics_process(delta: float) -> void:
 		if velocity.length() > max_speed:
 			velocity = velocity.normalized() * max_speed
 		
-		if velocity.length() <= 0.02:
+		if velocity.length() <= 4:
 			current_state = STATE.FLOAT
 			
 		if move_and_slide():
@@ -137,6 +141,10 @@ func _process(delta: float) -> void:
 	if velocity.x > 0:
 		sprite.scale.x = 1.0
 	
+var impulse_bubbles_timer : SceneTreeTimer
+func on_impulse_bubbles_timer_timeout() -> void:
+	impulse_bubbles_emitter.emitting = false
+	sprite.animation = "default"
 
 func _unhandled_input(event: InputEvent) -> void:
 	var touch : InputEventScreenTouch = event as InputEventScreenTouch
@@ -144,6 +152,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		if current_state == STATE.HURT:
 			return
 			
+		# Emit some impulse bubbles.
+		impulse_bubbles_timer = get_tree().create_timer(0.5, false)
+		impulse_bubbles_emitter.emitting = true
+		sprite.animation = "swim"
+		impulse_bubbles_timer.timeout.connect(on_impulse_bubbles_timer_timeout)
+		
 		local_target_pos = touch.position
 		#local_target_pos.x = clamp(local_target_pos.x, 8.0, 152.0)
 		#local_target_pos.y = clamp(local_target_pos.y, 120.0, 192.0)

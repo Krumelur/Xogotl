@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://xn2llk04iqgu"]
+[gd_scene load_steps=9 format=3 uid="uid://xn2llk04iqgu"]
 
 [ext_resource type="Script" uid="uid://d15sttxgr44i8" path="res://scenes/pond_inhabitants/fish_bone.gd" id="1_vcx02"]
 [ext_resource type="Texture2D" uid="uid://7qwrnfgjyljw" path="res://gfx/fish.png" id="2_s1unr"]
+[ext_resource type="Texture2D" uid="uid://c8dxo0dg1ibd0" path="res://gfx/gift.png" id="3_qc4yy"]
 [ext_resource type="PackedScene" uid="uid://casdp7x76w0ct" path="res://scenes/pond_inhabitants/pond_inhabitant_collider.tscn" id="3_s1unr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_djwo6"]
@@ -24,6 +25,14 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qc4yy")
+}],
+"loop": true,
+"name": &"gift",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s1unr"]
@@ -35,8 +44,8 @@ script = ExtResource("1_vcx02")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_s628v")
+animation = &"gift"
 autoplay = "default"
-frame_progress = 0.11941
 
 [node name="PondInhabitantCollider" parent="." instance=ExtResource("3_s1unr")]
 

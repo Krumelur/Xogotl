@@ -1,12 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjyysirxqi8ii"]
+[gd_scene load_steps=10 format=3 uid="uid://cjyysirxqi8ii"]
 
 [ext_resource type="Script" uid="uid://h13cp1vhy2i5" path="res://scenes/xogotl/xogotl.gd" id="1_f34km"]
 [ext_resource type="Texture2D" uid="uid://c02w16xthag7a" path="res://gfx/xogotl.png" id="2_we52l"]
 [ext_resource type="PackedScene" uid="uid://bhfyg5oi7hcxi" path="res://scenes/xogotl/ouch.tscn" id="3_0yqq3"]
+[ext_resource type="Texture2D" uid="uid://b38p41ywa5eib" path="res://gfx/xogotl_swim.png" id="3_03l36"]
+[ext_resource type="Texture2D" uid="uid://d2ohix0vqt0in" path="res://gfx/pixel.png" id="4_4ks4g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f34km"]
 radius = 4.99999
 height = 20.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r7n71"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_we52l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_03l36")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0yqq3"]
 radius = 5.0000005
@@ -27,9 +48,9 @@ position = Vector2(-1, -5)
 rotation = 1.57252
 shape = SubResource("CapsuleShape2D_f34km")
 
-[node name="XogotlSprite" type="Sprite2D" parent="."]
+[node name="XogotlSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
-texture = ExtResource("2_we52l")
+sprite_frames = SubResource("SpriteFrames_r7n71")
 
 [node name="AreaBody" type="Area2D" parent="XogotlSprite"]
 
@@ -47,6 +68,19 @@ shape = SubResource("CircleShape2D_a1t1e")
 
 [node name="Ouch" parent="XogotlSprite" instance=ExtResource("3_0yqq3")]
 visible = false
+
+[node name="ImpulseBubblesEmitter" type="CPUParticles2D" parent="XogotlSprite"]
+self_modulate = Color(1, 1, 1, 0.45490196)
+position = Vector2(-8, 5)
+emitting = false
+texture = ExtResource("4_4ks4g")
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector2(-1, 0)
+spread = 25.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 60.0
 
 [connection signal="area_shape_entered" from="XogotlSprite/AreaBody" to="." method="_body_area_entered"]
 [connection signal="area_entered" from="XogotlSprite/AreaMouth" to="." method="_mouth_area_entered"]

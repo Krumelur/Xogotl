@@ -6,7 +6,8 @@ enum INHABITANT_TYPE {
 	FISH_BONE,
 	SHRIMP,
 	WORM,
-	EEL
+	EEL,
+	GIFT
 }
 
 # Override this in subclass to return correct type.
