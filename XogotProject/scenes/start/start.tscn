@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsxcjs0wy410x"]
+[gd_scene load_steps=13 format=3 uid="uid://bsxcjs0wy410x"]
 
 [ext_resource type="Texture2D" uid="uid://bdbe62yrq2ih4" path="res://gfx/background_water.png" id="1_1eg8k"]
 [ext_resource type="Script" uid="uid://dsspa3t8sadpk" path="res://scenes/start/start.gd" id="1_vjlbs"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://clkxccjqimmxo" path="res://gfx/menu/menu_gift.png" id="7_vjlbs"]
 [ext_resource type="PackedScene" uid="uid://cjyysirxqi8ii" path="res://scenes/xogotl/xogotl.tscn" id="9_38s45"]
 [ext_resource type="AudioStream" uid="uid://hjdoh5lpbhiv" path="res://fx/start.wav" id="11_38s45"]
+[ext_resource type="AudioStream" uid="uid://bqtqodcr6olew" path="res://fx/music.ogg" id="12_i0jvh"]
 
 [node name="Start" type="Node2D"]
 script = ExtResource("1_vjlbs")
@@ -205,5 +206,10 @@ theme_override_fonts/font = ExtResource("3_0stv2")
 theme_override_font_sizes/font_size = 8
 text = "Eel.....ouch!"
 
-[node name="FxStart" type="AudioStreamPlayer" parent="."]
+[node name="FX" type="Node" parent="."]
+
+[node name="Start" type="AudioStreamPlayer" parent="FX"]
 stream = ExtResource("11_38s45")
+
+[node name="Music" type="AudioStreamPlayer" parent="FX"]
+stream = ExtResource("12_i0jvh")

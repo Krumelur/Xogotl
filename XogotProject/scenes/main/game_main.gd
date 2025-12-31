@@ -2,6 +2,7 @@
 # Sound FX: * OpenGameArt (Little Robot Sound Factory, www.littlerobotsoundfactory.com)
 #           * OpenGameArt (https://opengameart.org/content/12-player-movement-sfx)
 #           * OpenGameArt (https://opengameart.org/content/crunchy-bite)
+# 			* OpenGameArt (https://opengameart.org/content/nintendo-style-funny-music-loop-02)
 
 class_name GameMain
 
