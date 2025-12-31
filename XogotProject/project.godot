@@ -12,11 +12,11 @@ config_version=5
 
 config/name="Xogotl - Pond Survival"
 config/version="1.0.0"
-run/main_scene="uid://dukdxu6h8go6h"
+run/main_scene="res://scenes/start/start.tscn"
 config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/bg_color=Color(0.11764706, 0.60784316, 0, 1)
-boot_splash/image="uid://dt42r5u0goyci"
-config/icon="uid://c02w16xthag7a"
+boot_splash/image="res://gfx/splashscreen.png"
+config/icon="res://gfx/xogotl.png"
 
 [autoload]
 
@@ -59,7 +59,7 @@ environment/defaults/default_clear_color=Color(0.199997, 0.199997, 0.199997, 1)
 [xogot]
 
 project/editorState=[{
-"column": 10,
+"column": 0,
 "line": 65,
 "path": "res://scenes/main/game_main.gd",
 "type": "file"
@@ -69,23 +69,29 @@ project/editorState=[{
 "path": "res://addons/logger/logger.gd",
 "type": "file"
 }, {
-"column": 20,
+"column": 0,
 "line": 24,
 "path": "res://scenes/main/hud.gd",
 "type": "file"
 }, {
-"column": 30,
+"column": 0,
 "line": 6,
 "path": "res://scenes/pond_inhabitants/shrimp.gd",
 "type": "file"
 }, {
-"column": 28,
-"current": true,
+"column": 0,
 "line": 4,
 "path": "res://scenes/pond_inhabitants/eel.gd",
 "type": "file"
+}, {
+"column": 0,
+"current": true,
+"line": 5,
+"path": "res://scenes/HtmlForceClick/html_force_click.gd",
+"type": "file"
 }]
 project/breakpoints={
+"res://scenes/HtmlForceClick/html_force_click.gd": PackedInt32Array(5),
 "res://scenes/main/game_main.gd": PackedInt32Array(),
 "res://xogotl.gd": PackedInt32Array()
 }
