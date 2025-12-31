@@ -14,7 +14,7 @@ config/name="Xogotl - Pond Survival"
 config/version="1.0.0"
 run/main_scene="uid://dukdxu6h8go6h"
 config/features=PackedStringArray("4.5", "Mobile")
-boot_splash/bg_color=Color(0.368622, 0.188232, 0.921555, 1)
+boot_splash/bg_color=Color(0.11764706, 0.60784316, 0, 1)
 boot_splash/image="uid://dt42r5u0goyci"
 config/icon="uid://c02w16xthag7a"
 

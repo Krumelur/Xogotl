@@ -7,7 +7,8 @@ func _ready() -> void:
 	GodotLogger.info("OS", os_name)
 	# Web export requires user input to play music or sound so we need this dummy screen.
 	if os_name != "web":
-		get_tree().change_scene_to_file("res://scenes/LoadScreen/load_screen.tscn")
+		get_tree().change_scene_to_file("res://scenes/start/start.tscn")
+		return
 		
 	var start_tween = create_tween()
 	start_tween.tween_property(tap_to_start_label, "self_modulate:a", 1.0, 0.5)

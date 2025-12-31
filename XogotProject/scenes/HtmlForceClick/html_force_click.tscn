@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dukdxu6h8go6h"]
 
 [ext_resource type="Script" uid="uid://cqe5nrppwupkf" path="res://scenes/HtmlForceClick/html_force_click.gd" id="1_xxidq"]
-[ext_resource type="Texture2D" uid="uid://raytw5d8di5t" path="res://gfx/logo.png" id="2_puhof"]
+[ext_resource type="Texture2D" uid="uid://dqweksdnqttl2" path="res://gfx/xogot_logo.png" id="2_xxidq"]
 [ext_resource type="FontFile" uid="uid://22075gshcbqf" path="res://PrStart.ttf" id="3_xxidq"]
 
 [node name="HtmlForceClick" type="Control"]
@@ -24,9 +24,9 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.141176, 0.141176, 0.141176, 1)
 
-[node name="GodotLogo" type="Sprite2D" parent="Border"]
-position = Vector2(90, 100)
-texture = ExtResource("2_puhof")
+[node name="Logo" type="Sprite2D" parent="Border"]
+position = Vector2(90, 91)
+texture = ExtResource("2_xxidq")
 
 [node name="TapToStart" type="Label" parent="Border"]
 layout_mode = 0
