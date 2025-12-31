@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjyysirxqi8ii"]
+[gd_scene load_steps=12 format=3 uid="uid://cjyysirxqi8ii"]
 
 [ext_resource type="Script" uid="uid://h13cp1vhy2i5" path="res://scenes/xogotl/xogotl.gd" id="1_f34km"]
 [ext_resource type="Texture2D" uid="uid://c02w16xthag7a" path="res://gfx/xogotl.png" id="2_we52l"]
 [ext_resource type="PackedScene" uid="uid://bhfyg5oi7hcxi" path="res://scenes/xogotl/ouch.tscn" id="3_0yqq3"]
 [ext_resource type="Texture2D" uid="uid://b38p41ywa5eib" path="res://gfx/xogotl_swim.png" id="3_03l36"]
 [ext_resource type="Texture2D" uid="uid://d2ohix0vqt0in" path="res://gfx/pixel.png" id="4_4ks4g"]
+[ext_resource type="AudioStream" uid="uid://vadmv3vsnde7" path="res://fx/limb.wav" id="7_y2ncn"]
+[ext_resource type="AudioStream" uid="uid://be1scjhg82anh" path="res://fx/swim.wav" id="8_hx184"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f34km"]
 radius = 4.99999
@@ -36,7 +38,7 @@ height = 18.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_a1t1e"]
 radius = 5.0
 
-[node name="CharacterBody" type="CharacterBody2D"]
+[node name="Xogotl" type="CharacterBody2D"]
 disable_mode = 2
 motion_mode = 1
 slide_on_ceiling = false
@@ -81,6 +83,14 @@ spread = 25.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 20.0
 initial_velocity_max = 60.0
+
+[node name="FX" type="Node" parent="."]
+
+[node name="Swim" type="AudioStreamPlayer" parent="FX"]
+stream = ExtResource("8_hx184")
+
+[node name="Limb" type="AudioStreamPlayer" parent="FX"]
+stream = ExtResource("7_y2ncn")
 
 [connection signal="area_shape_entered" from="XogotlSprite/AreaBody" to="." method="_body_area_entered"]
 [connection signal="area_entered" from="XogotlSprite/AreaMouth" to="." method="_mouth_area_entered"]

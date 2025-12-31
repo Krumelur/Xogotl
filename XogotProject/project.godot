@@ -10,11 +10,12 @@ config_version=5
 
 [application]
 
-config/name="Xogotl"
-run/main_scene="res://scenes/main/game_main.tscn"
+config/name="Xogotl - Pond Survival"
+config/version="1.0.0"
+run/main_scene="uid://bsxcjs0wy410x"
 config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/bg_color=Color(0.368622, 0.188232, 0.921555, 1)
-config/icon="res://icon.svg"
+config/icon="uid://c02w16xthag7a"
 
 [autoload]
 

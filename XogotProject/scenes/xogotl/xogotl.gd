@@ -4,7 +4,7 @@ extends CharacterBody2D
 enum STATE {
 	FLOAT,
 	MOVE,
-	HURT
+	HURT,
 }
 
 signal has_eaten_inhabitant(inhabitant : PondInhabitant)
@@ -13,6 +13,10 @@ signal has_touched_inhabitant(inhabitant : PondInhabitant)
 @onready var sprite : AnimatedSprite2D = $XogotlSprite
 @onready var ouch : Node2D = $XogotlSprite/Ouch
 @onready var impulse_bubbles_emitter : CPUParticles2D = $XogotlSprite/ImpulseBubblesEmitter
+
+@onready var fx_swim : AudioStreamPlayer = $FX/Swim
+@onready var fx_limb : AudioStreamPlayer = $FX/Limb
+
 
 var local_target_pos: Vector2
 var num_limbs : int = 4
@@ -134,6 +138,8 @@ func _process(delta: float) -> void:
 		GodotLogger.debug("Grow limb progress", limb_grow_progress)
 		num_limbs += 1
 		limb_grow_progress = 0
+		fx_limb.play()
+
 		
 	if velocity.x < 0:
 		sprite.scale.x = -1.0
@@ -152,6 +158,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if current_state == STATE.HURT:
 			return
 			
+		fx_swim.play()
+		
 		# Emit some impulse bubbles.
 		impulse_bubbles_timer = get_tree().create_timer(0.5, false)
 		impulse_bubbles_emitter.emitting = true

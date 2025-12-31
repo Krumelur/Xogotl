@@ -35,16 +35,7 @@ func update_limbs(num_limbs : int, grow_progress : float) -> void:
 	rect.color = get_energy_color(rect.size.x / rect_max.size.x)
 	label.text = "Limbs\n%d" % num_limbs
 	
-	
-func _unhandled_input(event: InputEvent) -> void:
-	var touch : InputEventScreenTouch = event as InputEventScreenTouch
-	if touch:
-		if game_over_root.visible:
-			get_tree().paused = false
-			await global.transition_to_scene("res://scenes/main/game_main.tscn")
-			hide_game_over()
-			
-		
+
 func get_energy_color(percentage : float) -> Color:
 		var color_min : Color = Color.html("C03030")
 		var color_max : Color = Color.html("30A860")

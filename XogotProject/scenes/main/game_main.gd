@@ -1,4 +1,7 @@
 # Pixel font from: https://www.dafont.com/es/press-start.font
+# Sound FX: * OpenGameArt (Little Robot Sound Factory, www.littlerobotsoundfactory.com)
+#           * OpenGameArt (https://opengameart.org/content/12-player-movement-sfx)
+#           * OpenGameArt (https://opengameart.org/content/crunchy-bite)
 
 class_name GameMain
 
@@ -18,6 +21,12 @@ extends Node2D
 @onready var marker_bubbly_min_y : Marker2D = $Playfield/BubblesMinY
 @onready var playfield : Node2D = $Playfield
 @onready var boat : Boat = $Playfield/Boat
+
+@onready var fx_bonus : AudioStreamPlayer = $FX/Bonus
+@onready var fx_dead : AudioStreamPlayer = $FX/Dead
+@onready var fx_hit : AudioStreamPlayer = $FX/Hit
+@onready var fx_lose : AudioStreamPlayer = $FX/Lose
+@onready var fx_eat : AudioStreamPlayer = $FX/Eat
 
 var is_game_over : bool = false
 var next_eel_score : int = 0
@@ -83,10 +92,21 @@ func _ready() -> void:
 	hud.update_limbs(xogotl.num_limbs, xogotl.get_limb_grow_progress())
 
 func game_over(reason : String) -> void:
+	global.save_json("state", "hiscore.json", { "score" : score })
 	hud.show_game_over(reason)
+	
 	xogotl.visible = false
 	get_tree().paused = true
 	is_game_over = true
+	
+	fx_dead.play()
+	await fx_dead.finished
+	fx_lose.play()
+	await fx_lose.finished
+	
+	get_tree().paused = false
+	await global.transition_to_scene("res://scenes/start/start.tscn")
+	
 	
 func _process(delta: float) -> void:
 	if is_game_over:
@@ -143,10 +163,12 @@ func _on_xogotl_has_eaten_inhabitant(inhabitant: PondInhabitant) -> void:
 	# Eating pond inhabitants increases score and
 	# gives the Xogotl back some energy.
 	var type : PondInhabitant.INHABITANT_TYPE = inhabitant.get_inhabitant_type()
+	fx_eat.play()
 	match type:
 		PondInhabitant.INHABITANT_TYPE.GIFT:
+			fx_bonus.play()
 			inhabitant.remove_from_pond()
-			score += 150
+			score += 250
 			xogotl.energy += 0.25
 			
 		PondInhabitant.INHABITANT_TYPE.FISH_BONE:
@@ -173,4 +195,5 @@ func _on_boat_request_bait(hook: Node2D) -> void:
 func _on_xogotl_has_touched_inhabitant(inhabitant: PondInhabitant) -> void:
 	var group = inhabitant.get_groups()[0]
 	if group == "GROUP_EEL":
+		fx_hit.play()
 		xogotl.hurt(inhabitant)

@@ -1,3 +1,209 @@
-[gd_scene format=3 uid="uid://bsxcjs0wy410x"]
+[gd_scene load_steps=12 format=3 uid="uid://bsxcjs0wy410x"]
+
+[ext_resource type="Texture2D" uid="uid://bdbe62yrq2ih4" path="res://gfx/background_water.png" id="1_1eg8k"]
+[ext_resource type="Script" uid="uid://dsspa3t8sadpk" path="res://scenes/start/start.gd" id="1_vjlbs"]
+[ext_resource type="Texture2D" uid="uid://dmsm0qtqvg1ii" path="res://gfx/background_walls.png" id="2_stwfd"]
+[ext_resource type="FontFile" uid="uid://22075gshcbqf" path="res://PrStart.ttf" id="3_0stv2"]
+[ext_resource type="Texture2D" uid="uid://qk8tka1itxef" path="res://gfx/menu/menu_worm.png" id="4_0stv2"]
+[ext_resource type="Texture2D" uid="uid://bk6r5dihr2f0a" path="res://gfx/menu/menu_fish.png" id="4_3xo6f"]
+[ext_resource type="Texture2D" uid="uid://kri1cpvrujcb" path="res://gfx/menu/menu_shrimp.png" id="5_eqbev"]
+[ext_resource type="Texture2D" uid="uid://c7yay3njx3wr4" path="res://gfx/menu/menu_eel.png" id="6_pmgyj"]
+[ext_resource type="Texture2D" uid="uid://clkxccjqimmxo" path="res://gfx/menu/menu_gift.png" id="7_vjlbs"]
+[ext_resource type="PackedScene" uid="uid://cjyysirxqi8ii" path="res://scenes/xogotl/xogotl.tscn" id="9_38s45"]
+[ext_resource type="AudioStream" uid="uid://hjdoh5lpbhiv" path="res://fx/start.wav" id="11_38s45"]
 
 [node name="Start" type="Node2D"]
+script = ExtResource("1_vjlbs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 180.0
+offset_bottom = 200.0
+mouse_filter = 1
+color = Color(0.21960784, 0.18039216, 1, 1)
+
+[node name="BackgroundWater" type="Sprite2D" parent="."]
+position = Vector2(11, 36)
+texture = ExtResource("1_1eg8k")
+centered = false
+
+[node name="Xogotl" parent="." instance=ExtResource("9_38s45")]
+position = Vector2(81, 167)
+
+[node name="BackgroundWalls" type="Sprite2D" parent="."]
+position = Vector2(0, 27)
+texture = ExtResource("2_stwfd")
+centered = false
+
+[node name="Title" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 6.0
+offset_right = 182.0
+offset_bottom = 30.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_0stv2")
+theme_override_font_sizes/font_size = 8
+text = "Xogotl ~ The Pond"
+horizontal_alignment = 1
+
+[node name="TapToStart" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 36.0
+offset_right = 182.0
+offset_bottom = 60.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_0stv2")
+theme_override_font_sizes/font_size = 8
+text = "Tap to Start!"
+horizontal_alignment = 1
+
+[node name="HiScore" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 173.0
+offset_right = 182.0
+offset_bottom = 197.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_0stv2")
+theme_override_font_sizes/font_size = 8
+text = "Hiscore: 99999"
+horizontal_alignment = 1
+
+[node name="Instructions" type="Label" parent="."]
+offset_left = 181.0
+offset_top = 18.0
+offset_right = 1397.0
+offset_bottom = 28.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_0stv2")
+theme_override_font_sizes/font_size = 8
+text = "tap to navigate Xogotl * moving costs energy * eat to regain energy and score * evade eels or lose a limb * limbs grow * losing a limb slows you down * "
+
+[node name="Version" type="Label" parent="."]
+offset_left = 72.0
+offset_top = 187.0
+offset_right = 176.0
+offset_bottom = 197.0
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_constants/line_spacing = 3
+theme_override_fonts/font = ExtResource("3_0stv2")
+theme_override_font_sizes/font_size = 8
+text = "version"
+horizontal_alignment = 2
+
+[node name="PondInhabitants" type="Node2D" parent="."]
+position = Vector2(14, 58)
+
+[node name="Fishbone" type="Node2D" parent="PondInhabitants"]
+
+[node name="Icon" type="Sprite2D" parent="PondInhabitants/Fishbone"]
+position = Vector2(20, 0)
+texture = ExtResource("4_3xo6f")
+centered = false
+
+[node name="Text" type="Label" parent="PondInhabitants/Fishbone"]
+offset_left = 36.0
+offset_top = 2.0
+offset_right = 140.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0.8086743, 0.6346387, 0.24763179, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_0stv2")
+theme_override_font_sizes/font_size = 8
+text = "Fishbone...50"
+
+[node name="Shrimp" type="Node2D" parent="PondInhabitants"]
+position = Vector2(0, 20)
+
+[node name="Icon" type="Sprite2D" parent="PondInhabitants/Shrimp"]
+position = Vector2(20, 0)
+texture = ExtResource("5_eqbev")
+centered = false
+
+[node name="Text" type="Label" parent="PondInhabitants/Shrimp"]
+offset_left = 36.0
+offset_top = 2.0
+offset_right = 140.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0.80784315, 0.63529414, 0.24705882, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_0stv2")
+theme_override_font_sizes/font_size = 8
+text = "Shrimp....100"
+
+[node name="Worm" type="Node2D" parent="PondInhabitants"]
+position = Vector2(0, 40)
+
+[node name="Icon" type="Sprite2D" parent="PondInhabitants/Worm"]
+position = Vector2(20, 0)
+texture = ExtResource("4_0stv2")
+centered = false
+
+[node name="Text" type="Label" parent="PondInhabitants/Worm"]
+offset_left = 36.0
+offset_top = 2.0
+offset_right = 140.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0.80784315, 0.63529414, 0.24705882, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_0stv2")
+theme_override_font_sizes/font_size = 8
+text = "Worm......150"
+
+[node name="Gift" type="Node2D" parent="PondInhabitants"]
+position = Vector2(0, 60)
+
+[node name="Icon" type="Sprite2D" parent="PondInhabitants/Gift"]
+position = Vector2(20, -2)
+texture = ExtResource("7_vjlbs")
+centered = false
+
+[node name="Text" type="Label" parent="PondInhabitants/Gift"]
+offset_left = 36.0
+offset_top = 2.0
+offset_right = 140.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0.80784315, 0.63529414, 0.24705882, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_0stv2")
+theme_override_font_sizes/font_size = 8
+text = "Gift......250"
+
+[node name="Eel" type="Node2D" parent="PondInhabitants"]
+position = Vector2(0, 80)
+
+[node name="Icon" type="Sprite2D" parent="PondInhabitants/Eel"]
+position = Vector2(33, -1)
+scale = Vector2(-1, 1)
+texture = ExtResource("6_pmgyj")
+centered = false
+
+[node name="Text" type="Label" parent="PondInhabitants/Eel"]
+offset_left = 36.0
+offset_top = 2.0
+offset_right = 140.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0.80784315, 0.63529414, 0.24705882, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_0stv2")
+theme_override_font_sizes/font_size = 8
+text = "Eel.....ouch!"
+
+[node name="FxStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_38s45")

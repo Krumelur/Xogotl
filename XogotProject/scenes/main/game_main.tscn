@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://djuyho5k41npv"]
+[gd_scene load_steps=24 format=3 uid="uid://djuyho5k41npv"]
 
 [ext_resource type="Script" uid="uid://b3o3sxixvlni6" path="res://scenes/main/game_main.gd" id="1_womm6"]
 [ext_resource type="Texture2D" uid="uid://b382defop647e" path="res://gfx/water.png" id="3_sjx8o"]
@@ -6,8 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://dmsm0qtqvg1ii" path="res://gfx/background_walls.png" id="4_wtliu"]
 [ext_resource type="PackedScene" uid="uid://cjyysirxqi8ii" path="res://scenes/xogotl/xogotl.tscn" id="5_8hvka"]
 [ext_resource type="PackedScene" uid="uid://dqnao3wfq00mo" path="res://scenes/main/boat.tscn" id="8_gfm1o"]
+[ext_resource type="AudioStream" uid="uid://c8r738d27afyd" path="res://fx/bonus.wav" id="9_5ddng"]
 [ext_resource type="PackedScene" uid="uid://d2gp3dxq0uju0" path="res://scenes/main/cloud.tscn" id="9_kx2xn"]
 [ext_resource type="PackedScene" uid="uid://bdvpk21cn1b7o" path="res://scenes/main/hud.tscn" id="10_tnuef"]
+[ext_resource type="AudioStream" uid="uid://dr7fk2nr7q1ml" path="res://fx/dead.wav" id="10_uxmps"]
+[ext_resource type="AudioStream" uid="uid://kewqvsq26mng" path="res://fx/hit.wav" id="11_meoat"]
+[ext_resource type="AudioStream" uid="uid://d2ietodw0jgd2" path="res://fx/lose.wav" id="13_63wpq"]
+[ext_resource type="AudioStream" uid="uid://ca4isnttgq6of" path="res://fx/eat.ogg" id="13_hvvpt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wtliu"]
 atlas = ExtResource("3_sjx8o")
@@ -200,6 +205,25 @@ shape = SubResource("RectangleShape2D_gfm1o")
 [node name="CanvasLayerHud" type="CanvasLayer" parent="."]
 
 [node name="HudRoot" parent="CanvasLayerHud" instance=ExtResource("10_tnuef")]
+
+[node name="FX" type="Node" parent="."]
+
+[node name="Bonus" type="AudioStreamPlayer" parent="FX"]
+stream = ExtResource("9_5ddng")
+
+[node name="Dead" type="AudioStreamPlayer" parent="FX"]
+process_mode = 3
+stream = ExtResource("10_uxmps")
+
+[node name="Hit" type="AudioStreamPlayer" parent="FX"]
+stream = ExtResource("11_meoat")
+
+[node name="Lose" type="AudioStreamPlayer" parent="FX"]
+process_mode = 3
+stream = ExtResource("13_63wpq")
+
+[node name="Eat" type="AudioStreamPlayer" parent="FX"]
+stream = ExtResource("13_hvvpt")
 
 [connection signal="has_eaten_inhabitant" from="Playfield/Xogotl" to="." method="_on_xogotl_has_eaten_inhabitant"]
 [connection signal="has_touched_inhabitant" from="Playfield/Xogotl" to="." method="_on_xogotl_has_touched_inhabitant"]
