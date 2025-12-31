@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="Xogotl - Pond Survival"
+config/description="Little Xogotl is peacefully swimming through his pond when a deep rumble interrupts the calm. What was that? His stomach. The little creature is hungry.
+
+Help Xogotl explore the pond and hunt for tasty treats like shrimps, worms, and whatever else he can find.
+
+But be careful of the eels. These electrically charged troublemakers are always in a bad mood. Touching one will cost Xogotl a limb, slowing him down. Don’t worry - lost limbs grow back over time, but until then, movement will be less efficient.
+
+To move, simply tap the screen. Keep in mind that swimming consumes energy, which can only be restored by eating. Balance movement and feeding wisely, and see if you can push your limits to achieve a new high score.
+
+Enjoy!"
 config/version="1.0.0"
-run/main_scene="res://scenes/start/start.tscn"
+run/main_scene="uid://dukdxu6h8go6h"
 config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/bg_color=Color(0.11764706, 0.60784316, 0, 1)
 boot_splash/image="res://gfx/splashscreen.png"
@@ -95,3 +104,4 @@ project/breakpoints={
 "res://scenes/main/game_main.gd": PackedInt32Array(),
 "res://xogotl.gd": PackedInt32Array()
 }
+project/xogot_game_id="1323_xogotl-pond-survival"
