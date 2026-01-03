@@ -21,7 +21,7 @@ To move, simply tap the screen. Keep in mind that swimming consumes energy, whic
 
 Enjoy!"
 config/version="1.0.0"
-run/main_scene="uid://dukdxu6h8go6h"
+run/main_scene="res://scenes/HtmlForceClick/html_force_click.tscn"
 config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/bg_color=Color(0.11764706, 0.60784316, 0, 1)
 boot_splash/image="res://gfx/splashscreen.png"
@@ -95,12 +95,12 @@ project/editorState=[{
 }, {
 "column": 0,
 "current": true,
-"line": 5,
+"line": 16,
 "path": "res://scenes/HtmlForceClick/html_force_click.gd",
 "type": "file"
 }]
 project/breakpoints={
-"res://scenes/HtmlForceClick/html_force_click.gd": PackedInt32Array(5),
+"res://scenes/HtmlForceClick/html_force_click.gd": PackedInt32Array(),
 "res://scenes/main/game_main.gd": PackedInt32Array(),
 "res://xogotl.gd": PackedInt32Array()
 }
