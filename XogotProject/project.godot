@@ -20,7 +20,7 @@ But be careful of the eels. These electrically charged troublemakers are always 
 To move, simply tap the screen. Keep in mind that swimming consumes energy, which can only be restored by eating. Balance movement and feeding wisely, and see if you can push your limits to achieve a new high score.
 
 Enjoy!"
-config/version="1.0.1"
+config/version="1.0.2"
 run/main_scene="res://scenes/HtmlForceClick/html_force_click.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0.117647, 0.607843, 0, 1)
@@ -81,7 +81,28 @@ environment/defaults/default_clear_color=Color(0.199997, 0.199997, 0.199997, 1)
 
 [xogot]
 
-project/editorState=[]
+project/editorState=[{
+"column": 0,
+"line": 155,
+"path": "/private/var/mobile/Library/Mobile Documents/com~apple~CloudDocs/Xogot/Xogotl/XogotProject/scenes/xogotl/xogotl.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 0,
+"path": "res://scenes/pond_inhabitants/fish_bone.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 36,
+"path": "/private/var/mobile/Library/Mobile Documents/com~apple~CloudDocs/Xogot/Xogotl/XogotProject/scenes/start/start.gd",
+"type": "file"
+}, {
+"column": 0,
+"current": true,
+"line": 23,
+"path": "/private/var/mobile/Library/Mobile Documents/com~apple~CloudDocs/Xogot/Xogotl/XogotProject/scenes/HtmlForceClick/html_force_click.gd",
+"type": "file"
+}]
 project/breakpoints={
 "res://scenes/HtmlForceClick/html_force_click.gd": PackedInt32Array(),
 "res://scenes/main/game_main.gd": PackedInt32Array(),

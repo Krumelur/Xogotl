@@ -153,8 +153,7 @@ func on_impulse_bubbles_timer_timeout() -> void:
 	sprite.animation = "default"
 
 func _unhandled_input(event: InputEvent) -> void:
-	var touch : InputEventScreenTouch = event as InputEventScreenTouch
-	if touch:
+	if event.is_action_pressed("click"):
 		if current_state == STATE.HURT:
 			return
 			
@@ -166,7 +165,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		sprite.animation = "swim"
 		impulse_bubbles_timer.timeout.connect(on_impulse_bubbles_timer_timeout)
 		
-		local_target_pos = touch.position
+		local_target_pos = event.position
 		#local_target_pos.x = clamp(local_target_pos.x, 8.0, 152.0)
 		#local_target_pos.y = clamp(local_target_pos.y, 120.0, 192.0)
 
