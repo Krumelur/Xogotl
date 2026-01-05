@@ -31,7 +31,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.06, 2),
-"transitions": PackedFloat32Array(1.2311428, 1, 0.57434916),
+"transitions": PackedFloat32Array(1.23114, 1, 0.574349),
 "update": 0,
 "values": [Vector2(73, 48), Vector2(73, 56), Vector2(73, 48)]
 }
@@ -70,7 +70,7 @@ color = Color(0.8, 0.8, 0.8, 1)
 layout_mode = 0
 offset_right = 33.0
 offset_bottom = 2.0
-color = Color(0.3178683, 0.8481835, 0.34300897, 1)
+color = Color(0.317868, 0.848184, 0.343009, 1)
 
 [node name="Text" type="Label" parent="LimbsProgressMax"]
 layout_mode = 0
@@ -98,7 +98,7 @@ color = Color(0.8, 0.8, 0.8, 1)
 layout_mode = 0
 offset_right = 33.0
 offset_bottom = 2.0
-color = Color(0.3178683, 0.8481835, 0.34300897, 1)
+color = Color(0.317868, 0.848184, 0.343009, 1)
 
 [node name="Text" type="Label" parent="EnergyMax"]
 layout_mode = 0
@@ -123,7 +123,7 @@ process_mode = 3
 offset_right = 160.0
 offset_bottom = 70.0
 mouse_filter = 1
-color = Color(0, 0, 0, 0.47058824)
+color = Color(0, 0, 0, 0.470588)
 
 [node name="GameOver" type="Label" parent="GameOverRoot"]
 custom_minimum_size = Vector2(160, 0)

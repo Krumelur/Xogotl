@@ -22,8 +22,8 @@ To move, simply tap the screen. Keep in mind that swimming consumes energy, whic
 Enjoy!"
 config/version="1.0.0"
 run/main_scene="res://scenes/HtmlForceClick/html_force_click.tscn"
-config/features=PackedStringArray("4.5", "Mobile")
-boot_splash/bg_color=Color(0.11764706, 0.60784316, 0, 1)
+config/features=PackedStringArray("4.4", "Mobile")
+boot_splash/bg_color=Color(0.117647, 0.607843, 0, 1)
 boot_splash/image="res://gfx/splashscreen.png"
 config/icon="res://gfx/xogotl.png"
 
