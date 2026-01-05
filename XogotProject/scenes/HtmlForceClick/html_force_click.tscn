@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dukdxu6h8go6h"]
 
-[ext_resource type="Script" uid="uid://cqe5nrppwupkf" path="res://scenes/HtmlForceClick/html_force_click.gd" id="1_xxidq"]
+[ext_resource type="Script" path="/private/var/mobile/Library/Mobile Documents/com~apple~CloudDocs/Xogot/Xogotl/XogotProject/scenes/HtmlForceClick/html_force_click.gd" id="1_xxidq"]
 [ext_resource type="Texture2D" uid="uid://dqweksdnqttl2" path="res://gfx/xogot_logo.png" id="2_xxidq"]
 [ext_resource type="FontFile" uid="uid://22075gshcbqf" path="res://PrStart.ttf" id="3_xxidq"]
 

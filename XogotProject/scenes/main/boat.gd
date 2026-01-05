@@ -166,11 +166,3 @@ func raise_hook(delta : float) -> bool:
 func _draw() -> void:
 	if current_status in [STATUS.LOWERING_HOOK, STATUS.FISHING, STATUS.RAISING_HOOK]:
 		draw_line(current_hook_marker.position, hook.position, Color.html("b8b8b8"))
-	
-		
-func _unhandled_input(event: InputEvent) -> void:
-	var touch : InputEventScreenTouch = event as InputEventScreenTouch
-	if touch:
-		GodotLogger.info("Applying force")
-		#$Line/BodyLineSegment3.apply_central_force(Vector2(500, 0))
-		

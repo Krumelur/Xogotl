@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cjyysirxqi8ii"]
 
-[ext_resource type="Script" uid="uid://h13cp1vhy2i5" path="res://scenes/xogotl/xogotl.gd" id="1_f34km"]
+[ext_resource type="Script" path="/private/var/mobile/Library/Mobile Documents/com~apple~CloudDocs/Xogot/Xogotl/XogotProject/scenes/xogotl/xogotl.gd" id="1_twtk5"]
 [ext_resource type="Texture2D" uid="uid://c02w16xthag7a" path="res://gfx/xogotl.png" id="2_we52l"]
 [ext_resource type="PackedScene" uid="uid://bhfyg5oi7hcxi" path="res://scenes/xogotl/ouch.tscn" id="3_0yqq3"]
 [ext_resource type="Texture2D" uid="uid://b38p41ywa5eib" path="res://gfx/xogotl_swim.png" id="3_03l36"]
@@ -43,7 +43,7 @@ disable_mode = 2
 motion_mode = 1
 slide_on_ceiling = false
 wall_min_slide_angle = 0.262093
-script = ExtResource("1_f34km")
+script = ExtResource("1_twtk5")
 
 [node name="PhysicsBodyCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5)

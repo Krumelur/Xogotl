@@ -20,7 +20,7 @@ But be careful of the eels. These electrically charged troublemakers are always 
 To move, simply tap the screen. Keep in mind that swimming consumes energy, which can only be restored by eating. Balance movement and feeding wisely, and see if you can push your limits to achieve a new high score.
 
 Enjoy!"
-config/version="1.0.0"
+config/version="1.0.1"
 run/main_scene="res://scenes/HtmlForceClick/html_force_click.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0.117647, 0.607843, 0, 1)
@@ -50,15 +50,29 @@ GROUP_EEL=""
 GROUP_FISHBONE=""
 GROUP_WORM=""
 
+[input]
+
+click={
+"deadzone": 0.5,
+"events": Array[InputEvent]([Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
+])
+}
+
 [input_devices]
 
+virtual_controller/ios/enable_left_thumbstick=false
+virtual_controller/ios/enable_right_thumbstick=false
+virtual_controller/ios/enable_button_a=false
+virtual_controller/ios/enable_button_b=false
+virtual_controller/ios/enable_button_x=false
+virtual_controller/ios/enable_button_y=false
 pointing/emulate_touch_from_mouse=true
-pointing/emulate_mouse_from_touch=false
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/webp_compression/lossless_compression_factor=0.0
 textures/default_filters/texture_mipmap_bias=-0.627
 environment/defaults/default_clear_color=Color(0.199997, 0.199997, 0.199997, 1)
@@ -67,38 +81,7 @@ environment/defaults/default_clear_color=Color(0.199997, 0.199997, 0.199997, 1)
 
 [xogot]
 
-project/editorState=[{
-"column": 0,
-"line": 65,
-"path": "res://scenes/main/game_main.gd",
-"type": "file"
-}, {
-"column": 0,
-"line": 131,
-"path": "res://addons/logger/logger.gd",
-"type": "file"
-}, {
-"column": 0,
-"line": 24,
-"path": "res://scenes/main/hud.gd",
-"type": "file"
-}, {
-"column": 0,
-"line": 6,
-"path": "res://scenes/pond_inhabitants/shrimp.gd",
-"type": "file"
-}, {
-"column": 0,
-"line": 4,
-"path": "res://scenes/pond_inhabitants/eel.gd",
-"type": "file"
-}, {
-"column": 0,
-"current": true,
-"line": 16,
-"path": "res://scenes/HtmlForceClick/html_force_click.gd",
-"type": "file"
-}]
+project/editorState=[]
 project/breakpoints={
 "res://scenes/HtmlForceClick/html_force_click.gd": PackedInt32Array(),
 "res://scenes/main/game_main.gd": PackedInt32Array(),

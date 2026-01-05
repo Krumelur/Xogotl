@@ -34,8 +34,9 @@ func _process(delta: float) -> void:
 		instructions_label.position.x = scroller_start_pos_X
 
 func _unhandled_input(event: InputEvent) -> void:
-	var touch : InputEventScreenTouch = event as InputEventScreenTouch
-	if touch:
+	#var touch : InputEventScreenTouch = event as InputEventScreenTouch
+	
+	if event.is_action_pressed("click"):
 		fx_start.play()
 		await global.transition_to_scene("res://scenes/main/game_main.tscn")
 		await fx_start.finished

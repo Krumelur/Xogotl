@@ -21,6 +21,6 @@ func _process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	var touch : InputEventScreenTouch = event as InputEventScreenTouch
-	if touch:
+	#var touch : InputEventScreenTouch = event as InputEventScreenTouch
+	if event.is_action_pressed("click"):
 		global.transition_to_scene("res://scenes/start/start.tscn")

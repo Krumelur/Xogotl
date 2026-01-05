@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bsxcjs0wy410x"]
 
 [ext_resource type="Texture2D" uid="uid://bdbe62yrq2ih4" path="res://gfx/background_water.png" id="1_1eg8k"]
-[ext_resource type="Script" uid="uid://dsspa3t8sadpk" path="res://scenes/start/start.gd" id="1_vjlbs"]
+[ext_resource type="Script" path="/private/var/mobile/Library/Mobile Documents/com~apple~CloudDocs/Xogot/Xogotl/XogotProject/scenes/start/start.gd" id="1_i0jvh"]
 [ext_resource type="Texture2D" uid="uid://dmsm0qtqvg1ii" path="res://gfx/background_walls.png" id="2_stwfd"]
 [ext_resource type="FontFile" uid="uid://22075gshcbqf" path="res://PrStart.ttf" id="3_0stv2"]
 [ext_resource type="Texture2D" uid="uid://qk8tka1itxef" path="res://gfx/menu/menu_worm.png" id="4_0stv2"]
@@ -14,13 +14,13 @@
 [ext_resource type="AudioStream" uid="uid://bqtqodcr6olew" path="res://fx/music.ogg" id="12_i0jvh"]
 
 [node name="Start" type="Node2D"]
-script = ExtResource("1_vjlbs")
+script = ExtResource("1_i0jvh")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 180.0
 offset_bottom = 200.0
 mouse_filter = 1
-color = Color(0.21960784, 0.18039216, 1, 1)
+color = Color(0.219608, 0.180392, 1, 1)
 
 [node name="BackgroundWater" type="Sprite2D" parent="."]
 position = Vector2(11, 36)
@@ -113,7 +113,7 @@ offset_left = 36.0
 offset_top = 2.0
 offset_right = 140.0
 offset_bottom = 12.0
-theme_override_colors/font_color = Color(0.8086743, 0.6346387, 0.24763179, 1)
+theme_override_colors/font_color = Color(0.808674, 0.634639, 0.247632, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 3
 theme_override_constants/outline_size = 4
@@ -134,7 +134,7 @@ offset_left = 36.0
 offset_top = 2.0
 offset_right = 140.0
 offset_bottom = 12.0
-theme_override_colors/font_color = Color(0.80784315, 0.63529414, 0.24705882, 1)
+theme_override_colors/font_color = Color(0.807843, 0.635294, 0.247059, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 3
 theme_override_constants/outline_size = 4
@@ -155,7 +155,7 @@ offset_left = 36.0
 offset_top = 2.0
 offset_right = 140.0
 offset_bottom = 12.0
-theme_override_colors/font_color = Color(0.80784315, 0.63529414, 0.24705882, 1)
+theme_override_colors/font_color = Color(0.807843, 0.635294, 0.247059, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 3
 theme_override_constants/outline_size = 4
@@ -176,7 +176,7 @@ offset_left = 36.0
 offset_top = 2.0
 offset_right = 140.0
 offset_bottom = 12.0
-theme_override_colors/font_color = Color(0.80784315, 0.63529414, 0.24705882, 1)
+theme_override_colors/font_color = Color(0.807843, 0.635294, 0.247059, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 3
 theme_override_constants/outline_size = 4
@@ -198,7 +198,7 @@ offset_left = 36.0
 offset_top = 2.0
 offset_right = 140.0
 offset_bottom = 12.0
-theme_override_colors/font_color = Color(0.80784315, 0.63529414, 0.24705882, 1)
+theme_override_colors/font_color = Color(0.807843, 0.635294, 0.247059, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 3
 theme_override_constants/outline_size = 4
